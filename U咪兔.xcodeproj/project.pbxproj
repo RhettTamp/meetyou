@@ -25,7 +25,6 @@
 		F04ECC651E8E1EBF0024A74B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F04ECC401E8E1EBF0024A74B /* main.m */; };
 		F04ECC661E8E1EBF0024A74B /* UMTBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F04ECC5A1E8E1EBF0024A74B /* UMTBaseRequest.m */; };
 		F04ECC671E8E1EBF0024A74B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F04ECC5C1E8E1EBF0024A74B /* Assets.xcassets */; };
-		F0FB26911E8E8745000D587E /* BmobMessageSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0FB26901E8E8745000D587E /* BmobMessageSDK.framework */; };
 		F0FB26941E8E88A0000D587E /* UMTProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26931E8E88A0000D587E /* UMTProgressHUD.m */; };
 		FE0B2D1EF0B8EACD2ADE202F /* libPods-U咪兔.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 373B660C20E56D7DF036B505 /* libPods-U咪兔.a */; };
 /* End PBXBuildFile section */
@@ -63,10 +62,9 @@
 		F04ECC591E8E1EBF0024A74B /* UMTBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTBaseRequest.h; sourceTree = "<group>"; };
 		F04ECC5A1E8E1EBF0024A74B /* UMTBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTBaseRequest.m; sourceTree = "<group>"; };
 		F04ECC5C1E8E1EBF0024A74B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F0FB26901E8E8745000D587E /* BmobMessageSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobMessageSDK.framework; sourceTree = "<group>"; };
 		F0FB26921E8E88A0000D587E /* UMTProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTProgressHUD.h; sourceTree = "<group>"; };
 		F0FB26931E8E88A0000D587E /* UMTProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTProgressHUD.m; sourceTree = "<group>"; };
-		F0FB26951E8E8F3B000D587E /* UMT-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UMT-Prefix.pch"; sourceTree = "<group>"; };
+		F0FB26961E8E9B12000D587E /* UMT-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UMT-Prefix.pch"; path = "U咪兔/Support/UMT-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +73,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE0B2D1EF0B8EACD2ADE202F /* libPods-U咪兔.a in Frameworks */,
-				F0FB26911E8E8745000D587E /* BmobMessageSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +91,6 @@
 		9ECDF328FA53B7047DD7D2DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F0FB26901E8E8745000D587E /* BmobMessageSDK.framework */,
 				373B660C20E56D7DF036B505 /* libPods-U咪兔.a */,
 			);
 			name = Frameworks;
@@ -376,7 +372,7 @@
 		F0FB26661E8E77D1000D587E /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				F0FB26951E8E8F3B000D587E /* UMT-Prefix.pch */,
+				F0FB26961E8E9B12000D587E /* UMT-Prefix.pch */,
 			);
 			name = Support;
 			path = Other;

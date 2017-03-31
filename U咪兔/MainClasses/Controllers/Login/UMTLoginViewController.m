@@ -24,7 +24,7 @@
 
 - (IBAction)registerClicked:(UIButton *)sender {
     UMTRegisterViewController *vc = [[UMTRegisterViewController alloc]init];
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)fogotClicked:(UIButton *)sender {

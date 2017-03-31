@@ -23,8 +23,11 @@
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     UMTLoginViewController *loginVC = [[UMTLoginViewController alloc]init];
-    self.window.rootViewController = loginVC;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    
+    self.window.rootViewController = nav;
     return YES;
 }
 

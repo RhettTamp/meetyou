@@ -11,47 +11,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UMTLoginViewController">
             <connections>
+                <outlet property="accountText" destination="6Cr-rp-LXM" id="q8U-cm-QnS"/>
+                <outlet property="passwordText" destination="Rvq-dD-tFs" id="Udw-gL-ayQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="UIControl">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="账号：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Cr-rp-LXM">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="账号：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Cr-rp-LXM">
                     <rect key="frame" x="34" y="351" width="303" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rvq-dD-tFs">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rvq-dD-tFs">
                     <rect key="frame" x="34" y="427" width="303" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iH0-Fy-WeL">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iH0-Fy-WeL">
                     <rect key="frame" x="34" y="501" width="31" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="注册"/>
                     <connections>
                         <action selector="registerClicked:" destination="-1" eventType="touchUpInside" id="h4t-Uh-ftO"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYh-UP-aX0">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYh-UP-aX0">
                     <rect key="frame" x="275" y="501" width="62" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="忘了密码"/>
                     <connections>
                         <action selector="fogotClicked:" destination="-1" eventType="touchUpInside" id="Df0-d4-86p"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5d-M5-OF5">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5d-M5-OF5">
                     <rect key="frame" x="93" y="578" width="189" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="0.29763267910000002" blue="0.2071545524" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="登录">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,6 +59,24 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="iH0-Fy-WeL" firstAttribute="top" secondItem="Rvq-dD-tFs" secondAttribute="bottom" constant="44" id="9Cf-Ci-jmm"/>
+                <constraint firstAttribute="trailing" secondItem="6Cr-rp-LXM" secondAttribute="trailing" constant="38" id="Arv-MU-Ge9"/>
+                <constraint firstItem="iH0-Fy-WeL" firstAttribute="baseline" secondItem="dYh-UP-aX0" secondAttribute="baseline" id="GXz-dw-rMO"/>
+                <constraint firstItem="i5d-M5-OF5" firstAttribute="top" secondItem="dYh-UP-aX0" secondAttribute="bottom" constant="47" id="TOl-bC-ibS"/>
+                <constraint firstItem="i5d-M5-OF5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="93" id="VUo-1u-wsF"/>
+                <constraint firstItem="6Cr-rp-LXM" firstAttribute="leading" secondItem="Rvq-dD-tFs" secondAttribute="leading" id="aSu-Yb-zHg"/>
+                <constraint firstItem="Rvq-dD-tFs" firstAttribute="leading" secondItem="iH0-Fy-WeL" secondAttribute="leading" id="fcv-Zz-ZZ7"/>
+                <constraint firstItem="i5d-M5-OF5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="g3Z-uz-LFY"/>
+                <constraint firstItem="Rvq-dD-tFs" firstAttribute="trailing" secondItem="dYh-UP-aX0" secondAttribute="trailing" id="m4l-JC-D5a"/>
+                <constraint firstAttribute="bottom" secondItem="i5d-M5-OF5" secondAttribute="bottom" constant="59" id="nOf-zA-kgT"/>
+                <constraint firstItem="6Cr-rp-LXM" firstAttribute="trailing" secondItem="Rvq-dD-tFs" secondAttribute="trailing" id="p9z-V9-kw9"/>
+                <constraint firstItem="6Cr-rp-LXM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="34" id="rn0-Tk-Kcv"/>
+                <constraint firstItem="Rvq-dD-tFs" firstAttribute="top" secondItem="6Cr-rp-LXM" secondAttribute="bottom" constant="46" id="zgS-1q-pXh"/>
+            </constraints>
+            <connections>
+                <action selector="backTaped:" destination="-1" eventType="touchUpInside" id="5xy-4n-IIj"/>
+            </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>

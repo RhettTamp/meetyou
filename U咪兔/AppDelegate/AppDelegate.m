@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "UMTLoginViewController.h"
 #import "UMTRootViewController.h"
-
+#import <BmobMessageSDK/Bmob.h>
+#import "UMTSaveUserInfoHelper.h"
 
 @interface AppDelegate ()
 
@@ -24,10 +25,17 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    UMTLoginViewController *loginVC = [[UMTLoginViewController alloc]init];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    UMTUserMgr *shardMgr = [UMTSaveUserInfoHelper getUserInfoFromDisk];
+//    if (shardMgr.userInfo) {
+//        UMTRootViewController *rootVc = [[UMTRootViewController alloc]init];
+//        self.window.rootViewController = rootVc;
+//    }else{
+        UMTLoginViewController *loginVC = [[UMTLoginViewController alloc]init];
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+        self.window.rootViewController = nav;
+//    }
     
-    self.window.rootViewController = nav;
+    [Bmob registerWithAppKey:@"10342bad97d4b80691b2cdb168cb3ea6"];
     return YES;
 }
 

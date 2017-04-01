@@ -10,5 +10,8 @@
 #define UMT_Prefix_pch
 
 #import "UMTProgressHUD.h"
+#import "UIView+Extension.h"
+#import "UMTUserMgr.h"
+
 
 #endif /* UMT_Prefix_pch */

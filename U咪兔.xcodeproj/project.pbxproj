@@ -34,6 +34,16 @@
 		F0FB26B61E8FA781000D587E /* UMTRealInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26B41E8FA781000D587E /* UMTRealInfoViewController.m */; };
 		F0FB26B71E8FA781000D587E /* UMTRealInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FB26B51E8FA781000D587E /* UMTRealInfoViewController.xib */; };
 		F0FB26BA1E8FC2AF000D587E /* UMTSaveUserInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26B91E8FC2AF000D587E /* UMTSaveUserInfoHelper.m */; };
+		F0FB26BD1E92040B000D587E /* UMTBasicInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26BC1E92040B000D587E /* UMTBasicInfoController.m */; };
+		F0FB26C11E9214CF000D587E /* UMTInfoItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26C01E9214CF000D587E /* UMTInfoItemView.m */; };
+		F0FB26CA1E937651000D587E /* UMTPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26C91E937651000D587E /* UMTPasswordView.m */; };
+		F0FB26CD1E938590000D587E /* UMTPublicInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26CC1E938590000D587E /* UMTPublicInfoView.m */; };
+		F0FB26DA1E949AAC000D587E /* UMTContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26D81E949AAC000D587E /* UMTContactCell.m */; };
+		F0FB26DB1E949AAC000D587E /* UMTContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FB26D91E949AAC000D587E /* UMTContactCell.xib */; };
+		F0FB26DE1E94D1DF000D587E /* UMTInfoContactController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26DD1E94D1DF000D587E /* UMTInfoContactController.m */; };
+		F0FB26E11E9510CC000D587E /* UMTcertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26E01E9510CC000D587E /* UMTcertificationController.m */; };
+		F0FB26E51E9512EA000D587E /* UMTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26E41E9512EA000D587E /* UMTBaseViewController.m */; };
+		F0FB26E81E951BF0000D587E /* UMTSchoolInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26E71E951BF0000D587E /* UMTSchoolInfoView.m */; };
 		FE0B2D1EF0B8EACD2ADE202F /* libPods-U咪兔.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 373B660C20E56D7DF036B505 /* libPods-U咪兔.a */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +97,25 @@
 		F0FB26B51E8FA781000D587E /* UMTRealInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMTRealInfoViewController.xib; sourceTree = "<group>"; };
 		F0FB26B81E8FC2AF000D587E /* UMTSaveUserInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTSaveUserInfoHelper.h; sourceTree = "<group>"; };
 		F0FB26B91E8FC2AF000D587E /* UMTSaveUserInfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTSaveUserInfoHelper.m; sourceTree = "<group>"; };
+		F0FB26BB1E92040B000D587E /* UMTBasicInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTBasicInfoController.h; sourceTree = "<group>"; };
+		F0FB26BC1E92040B000D587E /* UMTBasicInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTBasicInfoController.m; sourceTree = "<group>"; };
+		F0FB26BF1E9214CF000D587E /* UMTInfoItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTInfoItemView.h; sourceTree = "<group>"; };
+		F0FB26C01E9214CF000D587E /* UMTInfoItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTInfoItemView.m; sourceTree = "<group>"; };
+		F0FB26C81E937651000D587E /* UMTPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTPasswordView.h; sourceTree = "<group>"; };
+		F0FB26C91E937651000D587E /* UMTPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTPasswordView.m; sourceTree = "<group>"; };
+		F0FB26CB1E938590000D587E /* UMTPublicInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTPublicInfoView.h; sourceTree = "<group>"; };
+		F0FB26CC1E938590000D587E /* UMTPublicInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTPublicInfoView.m; sourceTree = "<group>"; };
+		F0FB26D71E949AAC000D587E /* UMTContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTContactCell.h; sourceTree = "<group>"; };
+		F0FB26D81E949AAC000D587E /* UMTContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTContactCell.m; sourceTree = "<group>"; };
+		F0FB26D91E949AAC000D587E /* UMTContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMTContactCell.xib; sourceTree = "<group>"; };
+		F0FB26DC1E94D1DF000D587E /* UMTInfoContactController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTInfoContactController.h; sourceTree = "<group>"; };
+		F0FB26DD1E94D1DF000D587E /* UMTInfoContactController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTInfoContactController.m; sourceTree = "<group>"; };
+		F0FB26DF1E9510CC000D587E /* UMTcertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTcertificationController.h; sourceTree = "<group>"; };
+		F0FB26E01E9510CC000D587E /* UMTcertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTcertificationController.m; sourceTree = "<group>"; };
+		F0FB26E31E9512EA000D587E /* UMTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTBaseViewController.h; sourceTree = "<group>"; };
+		F0FB26E41E9512EA000D587E /* UMTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTBaseViewController.m; sourceTree = "<group>"; };
+		F0FB26E61E951BF0000D587E /* UMTSchoolInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTSchoolInfoView.h; sourceTree = "<group>"; };
+		F0FB26E71E951BF0000D587E /* UMTSchoolInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTSchoolInfoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +157,8 @@
 				F02669A61E8E55C80016F05B /* UMTRootViewController.m */,
 				F02669C21E8E6A380016F05B /* UMTNavigationController.h */,
 				F02669C31E8E6A380016F05B /* UMTNavigationController.m */,
+				F0FB26E31E9512EA000D587E /* UMTBaseViewController.h */,
+				F0FB26E41E9512EA000D587E /* UMTBaseViewController.m */,
 			);
 			name = Root;
 			path = Resource/Root;
@@ -249,6 +280,12 @@
 				F0FB26B31E8FA781000D587E /* UMTRealInfoViewController.h */,
 				F0FB26B41E8FA781000D587E /* UMTRealInfoViewController.m */,
 				F0FB26B51E8FA781000D587E /* UMTRealInfoViewController.xib */,
+				F0FB26BB1E92040B000D587E /* UMTBasicInfoController.h */,
+				F0FB26BC1E92040B000D587E /* UMTBasicInfoController.m */,
+				F0FB26DC1E94D1DF000D587E /* UMTInfoContactController.h */,
+				F0FB26DD1E94D1DF000D587E /* UMTInfoContactController.m */,
+				F0FB26DF1E9510CC000D587E /* UMTcertificationController.h */,
+				F0FB26E01E9510CC000D587E /* UMTcertificationController.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -298,32 +335,8 @@
 		F04ECC4F1E8E1EBF0024A74B /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				F04ECC501E8E1EBF0024A74B /* Activity */,
-				F04ECC511E8E1EBF0024A74B /* Message */,
-				F04ECC521E8E1EBF0024A74B /* Setting */,
 			);
 			path = Register;
-			sourceTree = "<group>";
-		};
-		F04ECC501E8E1EBF0024A74B /* Activity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Activity;
-			sourceTree = "<group>";
-		};
-		F04ECC511E8E1EBF0024A74B /* Message */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Message;
-			sourceTree = "<group>";
-		};
-		F04ECC521E8E1EBF0024A74B /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Setting;
 			sourceTree = "<group>";
 		};
 		F04ECC531E8E1EBF0024A74B /* Setting */ = {
@@ -336,6 +349,7 @@
 		F04ECC541E8E1EBF0024A74B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F0FB26BE1E921469000D587E /* Register */,
 				F04ECC551E8E1EBF0024A74B /* Activity */,
 				F04ECC561E8E1EBF0024A74B /* Message */,
 				F04ECC571E8E1EBF0024A74B /* Setting */,
@@ -431,6 +445,40 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		F0FB26BE1E921469000D587E /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				F0FB26BF1E9214CF000D587E /* UMTInfoItemView.h */,
+				F0FB26C01E9214CF000D587E /* UMTInfoItemView.m */,
+				F0FB26C71E937651000D587E /* BasicInfo */,
+				F0FB26E21E9510FE000D587E /* Certification */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		F0FB26C71E937651000D587E /* BasicInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F0FB26C81E937651000D587E /* UMTPasswordView.h */,
+				F0FB26C91E937651000D587E /* UMTPasswordView.m */,
+				F0FB26CB1E938590000D587E /* UMTPublicInfoView.h */,
+				F0FB26CC1E938590000D587E /* UMTPublicInfoView.m */,
+				F0FB26D71E949AAC000D587E /* UMTContactCell.h */,
+				F0FB26D81E949AAC000D587E /* UMTContactCell.m */,
+				F0FB26D91E949AAC000D587E /* UMTContactCell.xib */,
+			);
+			path = BasicInfo;
+			sourceTree = "<group>";
+		};
+		F0FB26E21E9510FE000D587E /* Certification */ = {
+			isa = PBXGroup;
+			children = (
+				F0FB26E61E951BF0000D587E /* UMTSchoolInfoView.h */,
+				F0FB26E71E951BF0000D587E /* UMTSchoolInfoView.m */,
+			);
+			path = Certification;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -498,6 +546,7 @@
 				F02669B81E8E65820016F05B /* UMTFindPasswordController.xib in Resources */,
 				F04ECC671E8E1EBF0024A74B /* Assets.xcassets in Resources */,
 				F0FB26B71E8FA781000D587E /* UMTRealInfoViewController.xib in Resources */,
+				F0FB26DB1E949AAC000D587E /* UMTContactCell.xib in Resources */,
 				F04ECC641E8E1EBF0024A74B /* Info.plist in Resources */,
 				F02669AE1E8E565C0016F05B /* UMTLoginViewController.xib in Resources */,
 				F02669B31E8E56C90016F05B /* UMTRegisterViewController.xib in Resources */,
@@ -560,17 +609,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0FB26BD1E92040B000D587E /* UMTBasicInfoController.m in Sources */,
 				F02669BB1E8E66290016F05B /* UMTMessageController.m in Sources */,
 				F02669B21E8E56C90016F05B /* UMTRegisterViewController.m in Sources */,
+				F0FB26DA1E949AAC000D587E /* UMTContactCell.m in Sources */,
 				F0FB26BA1E8FC2AF000D587E /* UMTSaveUserInfoHelper.m in Sources */,
+				F0FB26E81E951BF0000D587E /* UMTSchoolInfoView.m in Sources */,
+				F0FB26CD1E938590000D587E /* UMTPublicInfoView.m in Sources */,
+				F0FB26C11E9214CF000D587E /* UMTInfoItemView.m in Sources */,
 				F0FB26A91E8EA586000D587E /* UIView+Extension.m in Sources */,
 				F0FB26AA1E8EA586000D587E /* UMTProgressHUD.m in Sources */,
 				F04ECC601E8E1EBF0024A74B /* AppDelegate.m in Sources */,
+				F0FB26E11E9510CC000D587E /* UMTcertificationController.m in Sources */,
 				F02669C41E8E6A380016F05B /* UMTNavigationController.m in Sources */,
+				F0FB26CA1E937651000D587E /* UMTPasswordView.m in Sources */,
+				F0FB26DE1E94D1DF000D587E /* UMTInfoContactController.m in Sources */,
 				F02669B71E8E65820016F05B /* UMTFindPasswordController.m in Sources */,
 				F0FB269C1E8E9E8C000D587E /* UMTUserMgr.m in Sources */,
 				F04ECC661E8E1EBF0024A74B /* UMTBaseRequest.m in Sources */,
 				F0FB26B61E8FA781000D587E /* UMTRealInfoViewController.m in Sources */,
+				F0FB26E51E9512EA000D587E /* UMTBaseViewController.m in Sources */,
 				F0FB26B21E8F5F6F000D587E /* UMTUserInfo.m in Sources */,
 				F04ECC651E8E1EBF0024A74B /* main.m in Sources */,
 				F02669BE1E8E663C0016F05B /* UMTSettingController.m in Sources */,

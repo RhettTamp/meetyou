@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UMTRealInfoViewController : UIViewController
+@interface UMTRealInfoViewController : UMTBaseViewController
 
 @end

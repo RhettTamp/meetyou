@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UMTFindPasswordController : UIViewController
+@interface UMTFindPasswordController : UMTBaseViewController
 
 @end

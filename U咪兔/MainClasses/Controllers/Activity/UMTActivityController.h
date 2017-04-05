@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UMTActivityController : UIViewController
+@interface UMTActivityController : UMTBaseViewController
 
 @end

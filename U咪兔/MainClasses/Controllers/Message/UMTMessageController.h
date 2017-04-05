@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UMTMessageController : UIViewController
+@interface UMTMessageController : UMTBaseViewController
 
 @end

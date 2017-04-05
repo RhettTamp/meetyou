@@ -11,6 +11,7 @@
 #import "UMTFindPasswordController.h"
 #import "UMTRootViewController.h"
 #import "UMTSaveUserInfoHelper.h"
+#import "UMTNavigationController.h"
 
 @interface UMTLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *accountText;
@@ -22,6 +23,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
 

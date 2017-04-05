@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UMTRegisterViewController : UIViewController
+@interface UMTRegisterViewController : UMTBaseViewController
 
 @end

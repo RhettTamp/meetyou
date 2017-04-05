@@ -11,6 +11,7 @@
 #import "UMTRootViewController.h"
 #import <BmobMessageSDK/Bmob.h>
 #import "UMTSaveUserInfoHelper.h"
+#import "UMTNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -31,11 +32,11 @@
 //        self.window.rootViewController = rootVc;
 //    }else{
         UMTLoginViewController *loginVC = [[UMTLoginViewController alloc]init];
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+        UMTNavigationController *nav = [[UMTNavigationController alloc]initWithRootViewController:loginVC];
         self.window.rootViewController = nav;
 //    }
     
-    [Bmob registerWithAppKey:@"10342bad97d4b80691b2cdb168cb3ea6"];
+//    [Bmob registerWithAppKey:@"10342bad97d4b80691b2cdb168cb3ea6"];
     return YES;
 }
 

@@ -17,9 +17,9 @@
 
 @interface UMTPublicInfoView : UIView
 
-@property (nonatomic,copy) NSString *nikName;
-@property (nonatomic,copy) NSString *sex;
-@property (nonatomic,copy) NSString *label;
+@property (nonatomic,strong) NSString *nikName;
+@property (nonatomic,strong) NSString *sex;
+@property (nonatomic,strong) NSString *label;
 @property (nonatomic,weak) id <publickInfoViewDelegate>delegate;
 
 @end

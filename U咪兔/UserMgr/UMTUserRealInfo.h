@@ -10,8 +10,9 @@
 
 @interface UMTUserRealInfo : NSObject
 
-@property (nonatomic,copy)NSString *userName;
-@property (nonatomic,copy)NSString *userCDCard;
-@property (nonatomic,copy)NSString *userSchool;
+@property (nonatomic,strong)NSString *userName;
+@property (nonatomic,strong)NSString *userSchoolId;
+@property (nonatomic,strong)NSString *userSchool;
+@property (nonatomic,strong)NSData *userIdentityPicture;
 
 @end

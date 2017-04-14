@@ -7,8 +7,11 @@
 //
 
 #import "UMTFindPasswordController.h"
+#import "UMTResetPasswordController.h"
 
 @interface UMTFindPasswordController ()
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumberText;
+@property (weak, nonatomic) IBOutlet UITextField *securityText;
 
 @end
 
@@ -23,6 +26,13 @@
     [self.view endEditing:YES];
 }
 
+- (IBAction)getSecurityClicked:(UIButton *)sender {
+}
+
+- (IBAction)nextStationClicked:(UIButton *)sender {
+    UMTResetPasswordController *resetVc = [[UMTResetPasswordController alloc]init];
+    [self.navigationController pushViewController:resetVc animated:YES];
+}
 
 
 @end

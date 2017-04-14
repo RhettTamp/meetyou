@@ -8,57 +8,81 @@
 
 #import "UMTBaseRequest.h"
 #import "AFNetWorking.h"
+#import "UMTKeychainTool.h"
 
 @interface UMTBaseRequest ()
 
-@property (nonatomic,copy) NSString *urlString;
 @property (nonatomic,copy) UMTRequestCompletion completionBlock;
 @property (nonatomic,strong) AFHTTPSessionManager *sessionManager;
 
 @end
 
+static const NSString *baseUrl = @"https://xbbbbbb.cn/MeetU/api/";
+static UMTBaseRequest *baseRequest = nil;
 
 @implementation UMTBaseRequest
 
-+ (instancetype)requestWithURL:(NSString *)url{
-    UMTBaseRequest *request = [[UMTBaseRequest alloc]init];
-    request.urlString = url;
-    return request;
++ (instancetype)sharedRequest{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        baseRequest = [[UMTBaseRequest alloc]init];
+        baseRequest.requestToken = [UMTKeychainTool load:kTokenKey];
+    });
+    return baseRequest;
 }
 
-- (NSURLSessionDataTask *)requestWithType:(UMTRequestType)type params:(id)params completionBlock:(id)Completion{
-    NSURLSessionDataTask *task = nil;
-    self.completionBlock = Completion;
-    self.sessionManager = [self sessionManager];
-    if (type == UMTRequestTypeGet) {
-        task = [self.sessionManager GET:self.urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if (self.completionBlock) {
-                self.completionBlock(responseObject, nil, nil);
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (self.completionBlock) {
-                self.completionBlock(nil, nil, error);
-            }
-        }];
-    }else if (type == UMTRequestTypePost){
-        task = [self.sessionManager POST:self.urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if (self.completionBlock) {
-                self.completionBlock(responseObject, nil, nil);
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            if (self.completionBlock) {
-                self.completionBlock(nil, nil, error);
-            }
-        }];
+- (void)requestWithType:(UMTRequestType)type params:(id)params andUrlPath:(NSString *)urlPath completionBlock:(UMTRequestCompletion)completionBlock{
+    NSString *urlStr = [baseUrl copy];
+    urlStr = [NSString stringWithFormat:@"%@%@",urlStr,urlPath];
+    if (self.requestToken && self.requestToken.length > 0) {
+        urlStr = [NSString stringWithFormat:@"%@?token=%@",urlStr,self.requestToken];
     }
-    return task;
-}
-
--(AFHTTPSessionManager *)sessionManager{
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.timeoutIntervalForRequest = 30.0f;
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
-    return sessionManager;
+    if (type == UMTRequestTypeGet) {
+        [sessionManager GET:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (completionBlock) {
+                completionBlock(responseObject, nil, nil);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (completionBlock) {
+                completionBlock(nil, nil, error);
+            }
+        }];
+    }else if (type == UMTRequestTypePost){
+        [sessionManager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (completionBlock) {
+                completionBlock(responseObject, nil, nil);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (completionBlock) {
+                completionBlock(nil, nil, error);
+            }
+        }];
+    }
+}
+
+- (void)uploadFileData:(NSData *)fileData params:(id)params progress:(void(^)(NSProgress *uploadProgress))progress completionBlock:(UMTRequestCompletion)completionBlock{
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.timeoutIntervalForRequest = 30.0f;
+    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
+    [sessionManager POST:[baseUrl copy] parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.jpg", str];
+        [formData appendPartWithFormData:fileData name:fileName];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        if (progress) {
+            progress(uploadProgress);
+        }
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completionBlock(responseObject,nil,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completionBlock(nil,nil,error);
+    }];
+    
 }
 
 

@@ -16,7 +16,9 @@
 
 @interface UMTSchoolInfoView : UIView
 
-@property (nonatomic,copy) NSString *schoolName;
+@property (nonatomic,strong) NSString *schoolName;
+@property (nonatomic,strong) NSString *userName;
+@property (nonatomic,strong) NSString *userSchoolId;
 @property (nonatomic,weak)id<chooseSchoolDelegate>delegate;
 
 @end

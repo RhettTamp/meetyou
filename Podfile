@@ -8,4 +8,5 @@ pod 'FMDB'
 pod 'MBProgressHUD'
 pod 'YYModel'
 pod 'YYText'
+pod 'BaiduMapKit' #百度地图SDK
 end

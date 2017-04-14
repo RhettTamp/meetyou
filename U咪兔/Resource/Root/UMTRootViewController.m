@@ -11,6 +11,7 @@
 #import "UMTMessageController.h"
 #import "UMTSettingController.h"
 #import "UMTNavigationController.h"
+#import "UMTRecommendController.h"
 
 @interface UMTRootViewController ()
 
@@ -37,9 +38,9 @@
         controller.title = dic[@"name"];
         UMTNavigationController *navController = [[UMTNavigationController alloc]initWithRootViewController:controller];
         
-        navController.navigationBar.tintColor = [UIColor redColor];
+        navController.navigationBar.tintColor = kCommonGreenColor;
         navController.tabBarItem.title = dic[@"name"];
-        navController.navigationBar.barTintColor = [UIColor redColor];
+        navController.navigationBar.barTintColor = kCommonGreenColor;
         
         //img
         
@@ -58,6 +59,10 @@
                                @"icon" : @"icon_mainHome",
                                @"icon_s" : @"icon_mainHome_f",
                                @"viewController_class" : NSStringFromClass([UMTActivityController class])} ,
+                             @{@"name" : @"推荐",
+                               @"icon" : @"icon_mainMore",
+                               @"icon_s" : @"icon_mainMore_f2",
+                               @"viewController_class" : NSStringFromClass([UMTRecommendController class])},
                              @{@"name" : @"消息",
                                @"icon" : @"icon_mainNews",
                                @"icon_s" : @"icon_mainNews_f",

@@ -8,12 +8,13 @@
 
 #import "UMTInfoContactController.h"
 #import "UMTContactCell.h"
-#define kRowHeight 40
+#define kRowHeight 44
 
 @interface UMTInfoContactController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *contacTableView;
 @property (nonatomic,strong) NSMutableArray *datas;
+@property (nonatomic,strong) NSMutableDictionary *allContacts;
 
 @end
 
@@ -27,6 +28,8 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+
+
 - (instancetype)initWithTableView:(UITableView *)tableView
 {
     self = [super init];
@@ -38,7 +41,8 @@
         selfHeight = tableView.height;
         [tableView registerNib:[UINib nibWithNibName:@"UMTContactCell" bundle:nil] forCellReuseIdentifier:@"contactCell"];
         self.datas = [[NSMutableArray alloc]init];
-        [self.datas addObjectsFromArray:@[@"QQ",@"微信",@"新浪微博",@"Facebook",@"Instagram",@"Twitter"]];
+        self.allContacts = [NSMutableDictionary dictionaryWithDictionary:@{@"QQ":@"QQ",@"微信":@"WeChat",@"新浪微博":@"WeiBo",@"Facebook":@"Facebook",@"Instagram":@"Instagram",@"Twitter":@"Twitter"}];
+        self.datas = [NSMutableArray arrayWithArray:[self.allContacts allKeys]];
         self.contacTableView = tableView;
     }
     return self;
@@ -47,7 +51,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 
@@ -57,11 +60,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+    return kRowHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 40;
+    return kRowHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -98,14 +101,13 @@
 }
 
 - (UIView *)footerView{
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 220, 40)];
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(18, 0, UMTScreenWidth-20, 0.5)];
-    lineView.backgroundColor = [UIColor lightGrayColor];
-    [view addSubview:lineView];
-    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 30, 30)];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(50, 0, 160, 40)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 220, kRowHeight)];
+    view.backgroundColor = [UIColor whiteColor];
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(12, 11, 22, 22)];
+    imgView.image = [UIImage imageNamed:@"Contact_Add"];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(46, 0, 160, kRowHeight)];
     label.text = @"添加其他联系方式...";
-    label.textColor = [UIColor redColor];
+    label.textColor = kCommonGreenColor;
     [view addSubview:imgView];
     [view addSubview:label];
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(addContactCell)];
@@ -137,7 +139,10 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     for (int i = 0; i < titles.count; i++) {
         UMTContactCell *cell = cells[i];
-        [dic setObject:cell.textInput forKey:self.datas[i]];
+        NSString *text = cell.textInput;
+        if (text && text.length > 0) {
+            [dic setObject:text forKey:self.allContacts[titles[i]]];
+        }
     }
     return [dic copy];
 }

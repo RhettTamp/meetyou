@@ -12,6 +12,9 @@
 #import <BmobMessageSDK/Bmob.h>
 #import "UMTSaveUserInfoHelper.h"
 #import "UMTNavigationController.h"
+#import "UMTRefreshToken.h"
+//#import <BaiduMapKit/BaiduMapAPI_Base/BMKBaseComponent.h>
+#import "UMTKeychainTool.h"
 
 @interface AppDelegate ()
 
@@ -26,16 +29,29 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    UMTUserMgr *shardMgr = [UMTSaveUserInfoHelper getUserInfoFromDisk];
-//    if (shardMgr.userInfo) {
-//        UMTRootViewController *rootVc = [[UMTRootViewController alloc]init];
-//        self.window.rootViewController = rootVc;
-//    }else{
+//    BMKMapManager *mapManager = [[BMKMapManager alloc]init];
+//    BOOL set = [mapManager start:@"foiZgrIuq4XGlCWUlf6HGlHj3kprgX17" generalDelegate:self];
+//    if (!set) {
+//        NSLog(@"manager start failed!");
+//    }
+    NSString *token = [UMTKeychainTool load:kTokenKey];
+    
+    if (token && token.length > 0) {
+        
+        NSDate *date = [NSDate date];
+        NSDate *lastDate = [UMTKeychainTool load:@"lastDate"];
+        NSTimeInterval interval = [date timeIntervalSinceDate:lastDate];
+        if (interval > 24*3*3600) {
+            [UMTRefreshToken refreshTokenWithOldToken:token];
+            [UMTKeychainTool save:@"lastDate" data:date];
+        }
+        UMTRootViewController *rootVc = [[UMTRootViewController alloc]init];
+        self.window.rootViewController = rootVc;
+    }else{
         UMTLoginViewController *loginVC = [[UMTLoginViewController alloc]init];
         UMTNavigationController *nav = [[UMTNavigationController alloc]initWithRootViewController:loginVC];
         self.window.rootViewController = nav;
-//    }
-    
+    }
 //    [Bmob registerWithAppKey:@"10342bad97d4b80691b2cdb168cb3ea6"];
     return YES;
 }

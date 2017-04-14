@@ -7,6 +7,9 @@
 //
 
 #import "UMTSettingController.h"
+#import "UMTKeychainTool.h"
+#import "UMTLoginViewController.h"
+#import "UMTNavigationController.h"
 
 @interface UMTSettingController ()
 
@@ -16,22 +19,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(50, 100, 50, 40)];
+    [button setTitle:@"退出" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor redColor];
+    [button addTarget:self action:@selector(deleteClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)deleteClicked{
+    [UMTKeychainTool delete:kTokenKey];
+    [UMTKeychainTool delete:@"lastDate"];
+    UMTLoginViewController *loginVc = [[UMTLoginViewController alloc]init];
+    UMTNavigationController *nav = [[UMTNavigationController alloc]initWithRootViewController:loginVc];
+    [self presentViewController:nav animated:YES completion:nil];
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

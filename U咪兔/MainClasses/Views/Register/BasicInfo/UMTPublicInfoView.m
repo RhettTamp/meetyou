@@ -38,9 +38,19 @@
 }
 
 - (void)initNikNameItem{
+    
+    UIView *topLine = [[UIView alloc]init];
+    topLine.backgroundColor = kLineColor;
+    [self addSubview:topLine];
+    [topLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self);
+        make.height.mas_equalTo(0.5);
+    }];
+    
     self.nikNameItem = [[UMTInfoItemView alloc]init];
     self.nikNameItem.leftTitle = @"昵称";
     self.nikNameItem.rightPlaceholder = @"起一个昵称";
+    self.nikName = self.nikNameItem.textInput;
     [self addSubview:self.nikNameItem];
     [self.nikNameItem mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.equalTo(self);
@@ -48,11 +58,11 @@
         make.height.mas_equalTo(self.height/3);
     }];
     UIView *lineView = [[UIView alloc]init];
-    lineView.backgroundColor = [UIColor lightGrayColor];
+    lineView.backgroundColor = Hex(0xd5d4d8);
     [self addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nikNameItem.mas_bottom);
-        make.left.mas_offset(10);
+        make.left.mas_offset(15);
         make.right.equalTo(self);
         make.height.mas_equalTo(1);
     }];
@@ -61,13 +71,13 @@
 - (void)initSexItem{
     UIView *view = [[UIView alloc]init];
     UMTInfoItemView *item = [[UMTInfoItemView alloc]init];
-    item.rightPlaceholder = @"性别";
-    item.leftTitle = @"请选择性别";
+    item.rightPlaceholder = @"请选择性别";
+    item.leftTitle = @"性别";
     item.inputTextField.enabled = NO;
     self.sex = item.textInput;
     self.sexInfo = item;
     UIButton *rightButton = [[UIButton alloc]init];
-    [rightButton addTarget:self action:@selector(sexItemButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"Disclosure_Indicator"] forState:UIControlStateNormal];
     [view addSubview:item];
     [view addSubview:rightButton];
     [item mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,9 +86,10 @@
         make.top.bottom.equalTo(view);
     }];
     [rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_offset(-10);
+        make.right.mas_offset(-15);
         make.centerY.equalTo(view);
-        make.width.height.mas_equalTo(30);
+        make.width.mas_equalTo(8);
+        make.height.mas_equalTo(13);
     }];
     [self addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,12 +98,25 @@
         make.height.mas_equalTo(self.height/3);
     }];
     self.sexItem = view;
+    
+    UIView *clearView = [[UIView alloc]init];
+    clearView.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(sexItemButtonClicked)];
+    [clearView addGestureRecognizer:tap];
+    [self addSubview:clearView];
+    [clearView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(100);
+        make.right.equalTo(self);
+        make.top.equalTo(self.nikNameItem.mas_bottom);
+        make.height.mas_equalTo(self.height/3);
+    }];
+    
     UIView *lineView = [[UIView alloc]init];
-    lineView.backgroundColor = [UIColor lightGrayColor];
+    lineView.backgroundColor = Hex(0xd5d4d8);
     [self addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(view.mas_bottom);
-        make.left.mas_offset(10);
+        make.left.mas_offset(15);
         make.right.equalTo(self);
         make.height.mas_equalTo(1);
     }];
@@ -107,18 +131,19 @@
     self.label = item.textInput;
     self.labelInfo = item;
     UIButton *rightButton = [[UIButton alloc]init];
-    [rightButton addTarget:self action:@selector(labelItemButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"Disclosure_Indicator"] forState:UIControlStateNormal];
     [view addSubview:item];
     [view addSubview:rightButton];
     [item mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(view);
-        make.right.mas_offset(-50);
+        make.right.mas_offset(-25);
         make.top.bottom.equalTo(view);
     }];
     [rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_offset(-10);
+        make.right.mas_offset(-15);
         make.centerY.equalTo(view);
-        make.width.height.mas_equalTo(30);
+        make.width.mas_equalTo(8);
+        make.height.mas_equalTo(13);
     }];
     [self addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -128,6 +153,25 @@
     }];
     self.sexItem = view;
 
+    UIView *clearView = [[UIView alloc]init];
+    clearView.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelItemButtonClicked)];
+    [clearView addGestureRecognizer:tap];
+    [self addSubview:clearView];
+    [clearView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_offset(100);
+        make.right.equalTo(self);
+        make.bottom.equalTo(self);
+        make.height.mas_equalTo(self.height/3);
+    }];
+    
+    UIView *bottomLine = [[UIView alloc]init];
+    bottomLine.backgroundColor = kLineColor;
+    [self addSubview:bottomLine];
+    [bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self);
+        make.height.mas_equalTo(0.5);
+    }];
 }
 
 - (void)sexItemButtonClicked{

@@ -8,7 +8,7 @@
 
 #import "UMTInfoItemView.h"
 
-@interface UMTInfoItemView ()
+@interface UMTInfoItemView ()<UITextFieldDelegate>
 
 
 @property (nonatomic,assign) CGRect myRect;
@@ -22,21 +22,21 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.titleLabel = [[UILabel alloc]init];
+        self.titleLabel.font = kDefaultFont;
+        self.titleLabel.textColor = Hex(0x030303);
         [self addSubview:self.titleLabel];
         self.inputTextField = [[UITextField alloc]init];
+        self.inputTextField.font = kDefaultFont;
         [self addSubview:self.inputTextField];
     }
     return self;
 }
 
-//- (void)drawRect:(CGRect)rect{
-//    self.frame = _myRect;
-//}
 
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_offset(10);
+        make.left.mas_offset(15);
         make.centerY.equalTo(self);
         make.width.mas_offset(90);
     }];
@@ -64,6 +64,10 @@
 
 - (void)setTextInput:(NSString *)textInput{
     _inputTextField.text = textInput;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    self.textInput = textField.text;
 }
 
 @end

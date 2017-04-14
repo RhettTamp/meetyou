@@ -8,11 +8,10 @@
 
 #import "UMTContactCell.h"
 
-@interface UMTContactCell()
+@interface UMTContactCell()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UITextField *textFiled;
-
 
 @end
 
@@ -20,8 +19,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
+
+
 
 - (void)setLabelTitle:(NSString *)labelTitle{
     _labelTitle = labelTitle;
@@ -34,14 +34,17 @@
 }
 
 - (void)setTextInput:(NSString *)textInput{
-    _textInput = textInput;
+    self.textInput = textInput;
     _textFiled.text = textInput;
 }
 
-- (NSString *)inputText{
+- (NSString *)textInput{
     return self.textFiled.text;
 }
 
+//- (void)textFieldDidEndEditing:(UITextField *)textField{
+//    self.textFiled.te
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

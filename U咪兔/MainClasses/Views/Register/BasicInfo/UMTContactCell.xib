@@ -20,26 +20,37 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84a-Ur-c6k">
-                        <rect key="frame" x="18" y="11" width="80" height="21"/>
+                        <rect key="frame" x="8" y="11" width="80" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="Cqy-Iw-qFh"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-dt-Uok">
-                        <rect key="frame" x="108" y="3" width="257" height="37.5"/>
+                        <rect key="frame" x="88" y="3" width="277" height="37.5"/>
                         <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6df-sN-VtN">
+                        <rect key="frame" x="0.0" y="42.5" width="375" height="1"/>
+                        <color key="backgroundColor" red="0.83529411764705885" green="0.83137254901960778" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="EHV-8t-yU6"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="6df-sN-VtN" firstAttribute="leading" secondItem="Jnh-Jl-dAb" secondAttribute="leading" id="5kq-4i-mcA"/>
                     <constraint firstItem="84a-Ur-c6k" firstAttribute="top" secondItem="Jnh-Jl-dAb" secondAttribute="topMargin" constant="3" id="AoR-sv-1vO"/>
-                    <constraint firstItem="84a-Ur-c6k" firstAttribute="leading" secondItem="Jnh-Jl-dAb" secondAttribute="leadingMargin" constant="10" id="NVq-Nv-TiW"/>
-                    <constraint firstItem="Grj-dt-Uok" firstAttribute="leading" secondItem="84a-Ur-c6k" secondAttribute="trailing" constant="10" id="Xe1-rv-6Ay"/>
+                    <constraint firstAttribute="trailing" secondItem="6df-sN-VtN" secondAttribute="trailing" id="Jyg-hc-Q8q"/>
+                    <constraint firstItem="84a-Ur-c6k" firstAttribute="leading" secondItem="Jnh-Jl-dAb" secondAttribute="leadingMargin" id="NVq-Nv-TiW"/>
+                    <constraint firstAttribute="bottom" secondItem="6df-sN-VtN" secondAttribute="bottom" id="VKb-Aj-SfP"/>
+                    <constraint firstItem="Grj-dt-Uok" firstAttribute="leading" secondItem="84a-Ur-c6k" secondAttribute="trailing" id="Xe1-rv-6Ay"/>
                     <constraint firstAttribute="trailing" secondItem="Grj-dt-Uok" secondAttribute="trailing" constant="10" id="YT9-O5-J21"/>
+                    <constraint firstItem="84a-Ur-c6k" firstAttribute="centerY" secondItem="Jnh-Jl-dAb" secondAttribute="centerY" id="ZDk-x6-mwu"/>
                     <constraint firstAttribute="bottom" secondItem="Grj-dt-Uok" secondAttribute="bottom" constant="3" id="abT-VJ-pqF"/>
                     <constraint firstAttribute="bottomMargin" secondItem="84a-Ur-c6k" secondAttribute="bottom" constant="3" id="mJ9-q4-d9k"/>
                     <constraint firstItem="Grj-dt-Uok" firstAttribute="top" secondItem="Jnh-Jl-dAb" secondAttribute="top" constant="3" id="p8e-DX-5BK"/>
@@ -49,7 +60,7 @@
                 <outlet property="label" destination="84a-Ur-c6k" id="dxm-ud-6AS"/>
                 <outlet property="textFiled" destination="Grj-dt-Uok" id="t6w-YS-K2S"/>
             </connections>
-            <point key="canvasLocation" x="-11" y="96"/>
+            <point key="canvasLocation" x="-11.5" y="96"/>
         </tableViewCell>
     </objects>
 </document>

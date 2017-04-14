@@ -8,6 +8,8 @@
 
 #import "UMTInfoItemView.h"
 
+
+
 @interface UMTPasswordView : UIView
 
 @property (nonatomic,assign) BOOL isEqualPassword;

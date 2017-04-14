@@ -37,13 +37,13 @@ static UMTUserMgr *sharedMgr = nil;
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:self.userInfo forKey:@"USERINFO"];
-    [aCoder encodeObject:self.userRealInfo forKey:@"USERREALINFO"];
+//    [aCoder encodeObject:self.userRealInfo forKey:@"USERREALINFO"];
 }
 
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super init]) {
-        self.userRealInfo = [aDecoder decodeObjectForKey:@"USERREALINFO"];
+//        self.userRealInfo = [aDecoder decodeObjectForKey:@"USERREALINFO"];
         self.userInfo = [aDecoder decodeObjectForKey:@"USERINFO"];
     }
     return self;

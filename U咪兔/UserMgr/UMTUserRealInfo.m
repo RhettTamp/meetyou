@@ -8,28 +8,28 @@
 
 #import "UMTUserRealInfo.h"
 
-@interface UMTUserRealInfo()<NSCoding>
+@interface UMTUserRealInfo()
 
 @end
 
 @implementation UMTUserRealInfo
 
-- (void)encodeWithCoder:(NSCoder *)aCoder{
-    [aCoder encodeObject:self.userName forKey:@"USERNAME"];
-    [aCoder encodeObject:self.userCDCard forKey:@"USERCDCARD"];
-    [aCoder encodeObject:self.userSchool forKey:@"USERSCHOOL"];
-}
-
-
-
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super init]) {
-        self.userName = [aDecoder decodeObjectForKey:@"USERNAME"];
-        self.userCDCard = [aDecoder decodeObjectForKey:@"USERCDCARD"];
-        self.userSchool = [aDecoder decodeObjectForKey:@"USERSCHOOL"];
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder{
+//    [aCoder encodeObject:self.userName forKey:@"USERNAME"];
+//    [aCoder encodeObject:self.userSchoolId forKey:@"USERCDCARD"];
+//    [aCoder encodeObject:self.userSchool forKey:@"USERSCHOOL"];
+//}
+//
+//
+//
+//- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder{
+//    if (self = [super init]) {
+//        self.userName = [aDecoder decodeObjectForKey:@"USERNAME"];
+//        self.userCDCard = [aDecoder decodeObjectForKey:@"USERCDCARD"];
+//        self.userSchool = [aDecoder decodeObjectForKey:@"USERSCHOOL"];
+//    }
+//    return self;
+//}
 
 
 

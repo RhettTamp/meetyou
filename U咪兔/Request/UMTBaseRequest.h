@@ -18,8 +18,12 @@ typedef void(^UMTRequestCompletion)(id response,NSString *message,NSError *erro)
 
 @interface UMTBaseRequest : NSObject
 
-+ (instancetype)requestWithURL:(NSString *)url;
+@property (nonatomic,copy) NSString *requestToken;
 
-- (NSURLSessionDataTask *)requestWithType:(UMTRequestType)type params:(id)params completionBlock:UMTRequestCompletion;
+- (void)requestWithType:(UMTRequestType)type params:(id)params andUrlPath:(NSString *)urlPath completionBlock:(UMTRequestCompletion)completionBlock;
+
++ (instancetype)sharedRequest;
+
+- (void)uploadFileData:(NSData *)fileData params:(id)params progress:(void(^)(NSProgress *uploadProgress))progress completionBlock:(UMTRequestCompletion)completionBlock;
 
 @end

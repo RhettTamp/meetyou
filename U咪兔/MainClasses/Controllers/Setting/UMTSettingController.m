@@ -10,6 +10,7 @@
 #import "UMTKeychainTool.h"
 #import "UMTLoginViewController.h"
 #import "UMTNavigationController.h"
+#import "UMTBaseRequest.h"
 
 @interface UMTSettingController ()
 
@@ -29,6 +30,8 @@
 - (void)deleteClicked{
     [UMTKeychainTool delete:kTokenKey];
     [UMTKeychainTool delete:@"lastDate"];
+    UMTBaseRequest *request = [UMTBaseRequest sharedRequest];
+    request.requestToken = nil;
     UMTLoginViewController *loginVc = [[UMTLoginViewController alloc]init];
     UMTNavigationController *nav = [[UMTNavigationController alloc]initWithRootViewController:loginVc];
     [self presentViewController:nav animated:YES completion:nil];

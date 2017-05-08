@@ -22,7 +22,7 @@
     if (sharedHelper.photo2) {
         [params setValue:sharedHelper.photo2 forKey:@"photo2"];
     }
-    [[UMTBaseRequest sharedRequest] requestWithType:UMTRequestTypePost params:params andUrlPath:@"user/register" completionBlock:^(id response, NSString *message, NSError *erro) {
+    [[UMTBaseRequest sharedRequest] requestWithType:UMTRequestTypePost params:params andUrlPath:@"users" completionBlock:^(id response, NSString *message, NSError *erro) {
         if (erro) {
             if (completionBlock) {
                 completionBlock(erro,nil);

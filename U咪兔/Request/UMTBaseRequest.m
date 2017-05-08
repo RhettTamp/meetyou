@@ -60,6 +60,16 @@ static UMTBaseRequest *baseRequest = nil;
                 completionBlock(nil, nil, error);
             }
         }];
+    }else if (type == UMTRequestTypePut){
+        [sessionManager PUT:urlStr parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (completionBlock) {
+                completionBlock(responseObject, nil, nil);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (completionBlock) {
+                completionBlock(nil, nil, error);
+            }
+        }];
     }
 }
 

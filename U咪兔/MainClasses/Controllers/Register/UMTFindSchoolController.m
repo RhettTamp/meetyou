@@ -33,6 +33,15 @@
     [self initUI];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.searchController.active = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    self.searchController.active = NO;
+}
 
 - (void)initUI{
     self.schoolArray = [NSMutableArray array];

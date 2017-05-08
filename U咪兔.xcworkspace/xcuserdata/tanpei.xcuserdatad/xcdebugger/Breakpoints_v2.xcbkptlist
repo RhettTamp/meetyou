@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "U&#x54aa;&#x5154;/MainClasses/Controllers/Register/UMTFindSchoolController.m"
-            timestampString = "513594975.076562"
+            timestampString = "514468302.270354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "-searchBarSearchButtonClicked:"
             landmarkType = "7">
          </BreakpointContent>
@@ -169,13 +169,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "U&#x54aa;&#x5154;/MainClasses/Controllers/Register/UMTcertificationController.m"
-            timestampString = "513615357.403515"
+            filePath = "U&#x54aa;&#x5154;/Request/Register/UMTRegesterRequest.m"
+            timestampString = "515680746.059438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "-commitButtonClicked"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "+RegisterWithCompletionBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

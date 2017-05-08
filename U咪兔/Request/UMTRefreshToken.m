@@ -17,18 +17,18 @@
     }else{
         UMTBaseRequest *shareRequest = [UMTBaseRequest sharedRequest];
         shareRequest.requestToken = oldToken;
-        [shareRequest requestWithType:UMTRequestTypePost params:nil andUrlPath:@"user/upToken" completionBlock:^(id response, NSString *message, NSError *erro) {
+        [shareRequest requestWithType:UMTRequestTypePut params:nil andUrlPath:@"auth" completionBlock:^(id response, NSString *message, NSError *erro) {
             if (erro) {
                 NSLog(@"%@",erro);
             }else{
                 NSString *token = response[@"token"];
-                shareRequest.requestToken = token;
-                NSDate *date = [NSDate date];
-                [UMTKeychainTool save:kTokenKey data:token];
-                [UMTKeychainTool save:@"lastDate" data:date];
+                if (token && token.length > 0) {
+                    shareRequest.requestToken = token;
+                    NSDate *date = [NSDate date];
+                    [UMTKeychainTool save:kTokenKey data:token];
+                    [UMTKeychainTool save:@"lastDate" data:date];
+                }
             }
-            
-            
         }];
     }
 }

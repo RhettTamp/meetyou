@@ -12,8 +12,8 @@
 @implementation UMTSearchSchoolRequest
 
 + (void)getMoreSchoolWithKey:(NSString *)key andCompletionBlock:(void(^)(NSError *erro, id response))completionBlock;{
-    
-    [[UMTBaseRequest sharedRequest] requestWithType:UMTRequestTypeGet params:nil andUrlPath:[[NSString stringWithFormat:@"findSchool/%@",key] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] completionBlock:^(id response, NSString *message, NSError *erro) {
+    NSDictionary *dic = @{@"q":key};
+    [[UMTBaseRequest sharedRequest] requestWithType:UMTRequestTypeGet params:dic andUrlPath:[[NSString stringWithFormat:@"search/schools"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]] completionBlock:^(id response, NSString *message, NSError *erro) {
         if (erro) {
             if (completionBlock) {
                 completionBlock(erro,nil);

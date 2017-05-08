@@ -11,6 +11,7 @@
 typedef NS_ENUM(NSInteger,UMTRequestType){
     UMTRequestTypeGet,
     UMTRequestTypePost,
+    UMTRequestTypePut,
 };
 
 typedef void(^UMTRequestCompletion)(id response,NSString *message,NSError *erro);

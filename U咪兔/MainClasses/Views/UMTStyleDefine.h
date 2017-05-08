@@ -17,7 +17,7 @@
 #define kCommonbackColor Hex(0xf4f4f4)
 #define kLineColor Hex(0xd5d4d8)
 #define kGrayFontColor Hex(0x8f8e94)
-
+#define kCommonGray_Color Hex(0xeaeaea)
 
 #define kStandardPx(Px) round(Px/1.92 * 10)/10          //把标注转化成实际宽高
 

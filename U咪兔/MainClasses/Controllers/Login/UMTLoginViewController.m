@@ -14,6 +14,8 @@
 #import "UMTNavigationController.h"
 #import "UMTLoginRequest.h"
 #import "UMTKeychainTool.h"
+#import "UMTCircleView.h"
+#import "UMTBaseRequest.h"
 
 @interface UMTLoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *accountText;
@@ -28,6 +30,7 @@
     self.title = @"登录";
     NSString *phone = [[NSUserDefaults standardUserDefaults] objectForKey:@"phoneNumber"];
     self.accountText.text = phone;
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -79,7 +82,8 @@
                 [defaults setObject:phoneNumber forKey:@"phoneNumber"];
                 NSDate *date = [NSDate date];
                 [defaults synchronize];
-                
+                UMTBaseRequest *sharedRequest = [UMTBaseRequest sharedRequest];
+                sharedRequest.requestToken = token;
                 [UMTKeychainTool save:kTokenKey data:token];
                 [UMTKeychainTool save:@"lastDate" data:date];
                 UMTRootViewController *vc = [[UMTRootViewController alloc]init];

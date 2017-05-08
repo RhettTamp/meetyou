@@ -46,16 +46,16 @@ NSInteger timeOut;
         [[UMTProgressHUD sharedHUD] showWithText:@"请输入正确的手机号码" inView:self.view hideAfterDelay:1];
         return;
     }
-        [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:phoneNumber andTemplate:@"U咪兔账号注册	" resultBlock:^(int number, NSError *error) {
-            if (error) {
-                NSLog(@"%@",error);
-            }else{
-    
-            }
-        }];
+//    [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:phoneNumber andTemplate:@"U咪兔账号注册	" resultBlock:^(int number, NSError *error) {
+//        if (error) {
+//            NSLog(@"%@",error);
+//        }else{
+//            
+//        }
+//    }];
     self.getSecurityButton.enabled = NO;
     self.getSecurityButton.backgroundColor = kGrayFontColor;
-    [self.getSecurityButton setTitle:@"60" forState:UIControlStateDisabled];
+    [self.getSecurityButton setTitle:@"60秒" forState:UIControlStateDisabled];
     self.getSecurityButton.titleLabel.font = kFont(20);
     [self addCurDowntimerWithSecond:60];
 }
@@ -73,15 +73,18 @@ NSInteger timeOut;
         [[UMTProgressHUD sharedHUD] showWithText:@"请输入正确的验证码" inView:self.view hideAfterDelay:1];
         return;
     }
-
+    
     //验证
 //    [BmobSMS verifySMSCodeInBackgroundWithPhoneNumber:mobilePhoneNumber andSMSCode:smsCode resultBlock:^(BOOL isSuccessful, NSError *error) {
 //        if (isSuccessful) {
-//            [[UMTProgressHUD sharedHUD] showWithText:@"注册成功" inView:self.view hideAfterDelay:0.5];
+            [[UMTProgressHUD sharedHUD] showWithText:@"验证成功" inView:self.view hideAfterDelay:0.5];
             UMTRegisterHelper *helper = [UMTRegisterHelper sharedHelper];
             helper.phone = mobilePhoneNumber;
-            UMTBasicInfoController *vc = [[UMTBasicInfoController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                UMTBasicInfoController *vc = [[UMTBasicInfoController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+            });
+            
 //        } else {
 //            NSLog(@"%@",error);
 //            [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",error] inView:self.view hideAfterDelay:1];
@@ -95,7 +98,7 @@ NSInteger timeOut;
     NSTimer *timer = [NSTimer timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
         dispatch_async(dispatch_get_main_queue(), ^{
             timeSecond -= 1;
-            NSString *buttonTitle = [NSString stringWithFormat:@"%lu",timeSecond];
+            NSString *buttonTitle = [NSString stringWithFormat:@"%lu秒",timeSecond];
             [self.getSecurityButton setTitle:buttonTitle forState:UIControlStateDisabled];
             if (timeSecond == 0) {
                 __strong typeof(self) strongSelf = weakSelf;
@@ -103,7 +106,7 @@ NSInteger timeOut;
                 strongSelf.secondTimer = nil;
                 strongSelf.getSecurityButton.enabled = YES;
                 strongSelf.getSecurityButton.selected = NO;
-                [strongSelf.getSecurityButton setTitle:@"60" forState:UIControlStateDisabled];
+                [strongSelf.getSecurityButton setTitle:@"60秒" forState:UIControlStateDisabled];
                 strongSelf.getSecurityButton.backgroundColor = kCommonGreenColor;
                 strongSelf.getSecurityButton.titleLabel.font = kFont(17);
             }

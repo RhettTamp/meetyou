@@ -15,6 +15,7 @@
 #import "UMTRefreshToken.h"
 //#import <BaiduMapKit/BaiduMapAPI_Base/BMKBaseComponent.h>
 #import "UMTKeychainTool.h"
+#import "UMTBaseRequest.h"
 
 @interface AppDelegate ()
 
@@ -37,7 +38,8 @@
     NSString *token = [UMTKeychainTool load:kTokenKey];
     
     if (token && token.length > 0) {
-        
+        UMTBaseRequest *sharedRequest = [UMTBaseRequest sharedRequest];
+        sharedRequest.requestToken = token;
         NSDate *date = [NSDate date];
         NSDate *lastDate = [UMTKeychainTool load:@"lastDate"];
         NSTimeInterval interval = [date timeIntervalSinceDate:lastDate];

@@ -12,6 +12,7 @@
 
 @interface UMTUserMgr ()<NSCoding>
 
+
 @end
 
 @implementation UMTUserMgr
@@ -45,10 +46,9 @@ static UMTUserMgr *sharedMgr = nil;
     if (self = [super init]) {
 //        self.userRealInfo = [aDecoder decodeObjectForKey:@"USERREALINFO"];
         self.userInfo = [aDecoder decodeObjectForKey:@"USERINFO"];
+        
     }
     return self;
 }
-
-
 
 @end

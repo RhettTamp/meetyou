@@ -166,8 +166,9 @@
     sharedHelper.name = name;
     sharedHelper.student_id = studentId;
     sharedHelper.school_id = self.schoolInfo[@"school_id"];
-    
+    [[UMTProgressHUD sharedHUD] rotateWithText:@"注册中" inView:self.view];
     [UMTRegesterRequest RegisterWithCompletionBlock:^(NSError *erro, id response) {
+        [[UMTProgressHUD sharedHUD] hideAfterDelay:0];
         if (erro) {
             [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",erro] inView:self.view hideAfterDelay:0.5];
         }else{
@@ -191,11 +192,11 @@
 - (void)skip{
     [[UMTProgressHUD sharedHUD] rotateWithText:@"注册中" inView:self.view];
     [UMTRegesterRequest RegisterWithCompletionBlock:^(NSError *erro, id response) {
+        [[UMTProgressHUD sharedHUD]hideAfterDelay:0];
         if (erro) {
             [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",erro] inView:self.view hideAfterDelay:0.5];
         }else{
             if ([response[@"status_code"] isEqualToString:@"2001"]) {
-                [[UMTProgressHUD sharedHUD]hideAfterDelay:0];
                 NSString *token = response[@"token"];
                 NSDate *date = [NSDate date];
                 

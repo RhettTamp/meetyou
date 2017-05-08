@@ -21,7 +21,7 @@
 
 #define kItemHeight 44
 
-@interface UMTBasicInfoController ()<publickInfoViewDelegate,UITextFieldDelegate,UMTAlertViewDelegate>
+@interface UMTBasicInfoController ()<publickInfoViewDelegate,UMTAlertViewDelegate>
 
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UMTPasswordView *passwordView;
@@ -212,6 +212,7 @@
     [self saveInfo];
     [[UMTProgressHUD sharedHUD] rotateWithText:@"注册中" inView:self.view];
     [UMTRegesterRequest RegisterWithCompletionBlock:^(NSError *erro, id response) {
+        [[UMTProgressHUD sharedHUD] hideAfterDelay:0];
         if (erro) {
             [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",erro] inView:self.view hideAfterDelay:0.5];
         }else{

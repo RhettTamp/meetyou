@@ -20,25 +20,27 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.cornerRadius = 3;
+        self.layer.cornerRadius = 4;
         UIView *whiteView = [[UIView alloc]init];
         whiteView.backgroundColor = [UIColor whiteColor];
+        whiteView.layer.cornerRadius = 1.5;
         [self addSubview:whiteView];
         [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_offset(5);
-            make.top.mas_offset(5);
-            make.bottom.mas_offset(-5);
+            make.left.mas_offset(6);
+            make.centerY.equalTo(self);
             make.width.mas_equalTo(2);
+            make.height.mas_equalTo(10);
         }];
         
         UILabel *tagLabel = [[UILabel alloc]init];
-        tagLabel.font = kFont(13);
+        tagLabel.font = kFont(11);
+        tagLabel.textColor = [UIColor whiteColor];
         self.tagLabel = tagLabel;
         [tagLabel sizeToFit];
         [self addSubview:tagLabel];
         [tagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(whiteView.mas_right).offset(3);
-            make.right.mas_offset(-3);
+            make.left.equalTo(whiteView.mas_right).offset(6);
+            make.right.mas_offset(-6);
             make.centerY.equalTo(self);
         }];
     }

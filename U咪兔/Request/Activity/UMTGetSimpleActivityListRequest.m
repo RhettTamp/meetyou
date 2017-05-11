@@ -1,0 +1,30 @@
+//
+//  UMTGetSimpleActivityListRequest.m
+//  U咪兔
+//
+//  Created by 谭培 on 2017/5/10.
+//  Copyright © 2017年 RhettTamp. All rights reserved.
+//
+
+#import "UMTGetSimpleActivityListRequest.h"
+#import "UMTBaseRequest.h"
+
+@implementation UMTGetSimpleActivityListRequest
+
++ (void)GetActivityListWithCompletionBlock:(void(^)(NSError *erro, id response))completionBlock{
+    UMTBaseRequest *sharedRequest = [UMTBaseRequest sharedRequest];
+    NSDictionary *params = @{@"type":@2};
+    [sharedRequest requestWithType:UMTRequestTypeGet params:params andUrlPath:@"activity" completionBlock:^(id response, NSString *message, NSError *erro) {
+        if (erro) {
+            if (completionBlock) {
+                completionBlock(erro,nil);
+            }
+        }else{
+            if (completionBlock) {
+                completionBlock(nil,response);
+            }
+        }
+    }];
+}
+
+@end

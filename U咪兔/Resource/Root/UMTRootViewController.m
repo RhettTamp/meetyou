@@ -37,6 +37,7 @@
     [self initIssueButton];
 }
 
+
 - (void)initIssueButton{
     UIButton *detailButton = [[UIButton alloc]init];
     [detailButton setTitle:@"精心计划" forState:UIControlStateNormal];

@@ -15,10 +15,11 @@
 #import "UIResponder+Extension.h"
 #import "UMTTagChooseController.h"
 
+
 #define kItemHeight 40
 
 
-@interface UMTIssueDetailActivityController ()<UMTAddActivityNavBarDelegate,UMTAlertViewDelegate,UMTAddActivityTimeViewDelegate,UITextViewDelegate>
+@interface UMTIssueDetailActivityController ()<UMTAddActivityNavBarDelegate,UMTAddActivityTimeViewDelegate,UITextViewDelegate>
 
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UILabel *typeLabel;

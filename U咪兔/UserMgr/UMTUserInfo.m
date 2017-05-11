@@ -14,14 +14,13 @@
 
 @implementation UMTUserInfo
 
+
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:self.userNickname forKey:@"USERNICKNAME"];
     [aCoder encodeObject:self.userPassword forKey:@"USERPASSWORD"];
     [aCoder encodeObject:self.userPhoneNumber forKey:@"USERPHONENUMBER"];
     [aCoder encodeBool:self.isHaveRealInfomation forKey:@"ISHAVEREALINFOMATION"];
 }
-
-
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super init]) {
@@ -32,6 +31,5 @@
     }
     return self;
 }
-
 
 @end

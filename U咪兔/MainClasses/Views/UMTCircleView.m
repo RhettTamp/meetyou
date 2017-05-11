@@ -59,7 +59,7 @@
     grayLayer.fillColor = nil;
     grayLayer.frame = self.bounds;
     [self.layer addSublayer:grayLayer];
-    grayLayer.strokeColor = [UIColor grayColor].CGColor;
+    grayLayer.strokeColor = Hex(0xF3F3F3).CGColor;
     grayLayer.lineCap = kCALineCapRound;
     grayLayer.lineWidth = self.circleWidth;
     UIBezierPath *circlePath = [UIBezierPath bezierPathWithArcCenter:center radius:self.radius startAngle:-M_PI_2 endAngle:M_PI*3/2 clockwise:YES];

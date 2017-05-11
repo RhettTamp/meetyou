@@ -12,7 +12,7 @@
 #import "UMTGetActivityListRequest.h"
 #import "UMTDetailActivityCellModel.h"
 #import "UMTCheckDetailController.h"
-
+#import "UMTUserInfoModel.h"
 
 @interface UMTDetailActivityController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -28,10 +28,6 @@ static NSString *const cellIdentifier = @"UMTDetailActivityCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.datalist = [NSMutableArray array];
-//    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    UMTCircleView *cir = [[UMTCircleView alloc]initWithRadius:50 circleWidth:20 Progress:0.7];
-//    cir.frame = CGRectMake(50, 80, 100, 100);
-//    [self.view addSubview:cir];
     [self initTableView];
     [self refreshData];
 }
@@ -45,6 +41,7 @@ static NSString *const cellIdentifier = @"UMTDetailActivityCell";
             for (int i = 0; i < datas.count; i++) {
                 UMTDetailActivityCellModel *model = [UMTDetailActivityCellModel yy_modelWithJSON:datas[i]];
                 [self.datalist addObject:model];
+                [self.tableView reloadData];
             }
         }
     }];
@@ -60,23 +57,36 @@ static NSString *const cellIdentifier = @"UMTDetailActivityCell";
         make.top.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
+    self.tableView = tableView;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.datalist.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 220;
+    return 227;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UMTDetailActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UMTDetailActivityCell alloc]initWithFrame:CGRectMake(0, 0, UMTScreenWidth, 220)];
+        cell = [[UMTDetailActivityCell alloc]initWithFrame:CGRectMake(0, 0, UMTScreenWidth, 227)];
     }
+    UMTDetailActivityCellModel *model = self.datalist[indexPath.row];
+    cell.title = model.title;
+    cell.startTime = model.startTime;
+    cell.endTime = model.endTime;
+    cell.content = model.content;
+    cell.headStr = model.creator.headImgUrl;
+    cell.site = model.site;
+    cell.tags = model.tags;
+    cell.peoplePercent = model.peopleCount;
+    cell.applyStartTime = model.applyStartTime;
+    cell.applyEndTime = model.applyEndTime;
+    [cell resetData];
     return cell;
 }
 

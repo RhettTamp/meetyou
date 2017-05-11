@@ -10,6 +10,17 @@
 
 @interface UMTDetailActivityCell : UITableViewCell
 
+@property (nonatomic,strong) NSString *title;
+@property (nonatomic,strong) NSString *startTime;  //活动开始时间
+@property (nonatomic,strong) NSString *endTime;
+@property (nonatomic,strong) NSString *applyStartTime; //报名开始时间
+@property (nonatomic,strong) NSString *applyEndTime;
+@property (nonatomic,strong) NSString *content;
+@property (nonatomic,strong) NSString *site;
+@property (nonatomic,strong) NSArray *tags;
+@property (nonatomic,assign) CGFloat peoplePercent;
+@property (nonatomic,strong) NSString *headStr;
 
+- (void)resetData;
 
 @end

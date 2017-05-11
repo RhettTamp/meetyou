@@ -15,7 +15,8 @@
 #define kCommonLightGreenColor Hex(0x57d980)
 #define kCommonItemHeight 44
 #define kCommonbackColor Hex(0xf4f4f4)
-#define kLineColor Hex(0xd5d4d8)
+#define klightGray Hex(0xf3f3f3)
+#define kLineColor Hex(0xdedfe0)
 #define kGrayFontColor Hex(0x8f8e94)
 #define kCommonGray_Color Hex(0xeaeaea)
 

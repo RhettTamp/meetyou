@@ -27,17 +27,18 @@
         siteImg.image = [UIImage imageNamed:@"Pin"];
         [self addSubview:siteImg];
         [siteImg mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_offset(3);
+            make.left.mas_offset(6);
             make.centerY.equalTo(self);
-            make.width.and.height.mas_equalTo(16);
+            make.width.and.height.mas_equalTo(10);
         }];
         UILabel *siteLabel = [[UILabel alloc]init];
-        siteLabel.font = kFont(14);
+        siteLabel.font = kFont(11);
+        siteLabel.textColor = Hex(0x333333);
         [siteLabel sizeToFit];
         [self addSubview:siteLabel];
         [siteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(siteImg.mas_right).offset(3);
-            make.right.equalTo(self.mas_right).offset(-2);
+            make.left.equalTo(siteImg.mas_right).offset(8);
+            make.right.equalTo(self.mas_right).offset(-6);
             make.centerY.equalTo(self);
         }];
         self.siteLabel = siteLabel;

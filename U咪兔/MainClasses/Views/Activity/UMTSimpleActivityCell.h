@@ -15,8 +15,9 @@
 @property (nonatomic,strong) NSString *site;
 @property (nonatomic,strong) NSArray *tags;
 @property (nonatomic,strong) NSString *headUrl;
-@property (nonatomic,strong) NSString *endTime;
 @property (nonatomic,assign) CGFloat persenCount;
+@property (nonatomic,strong) NSString *applyEndTime;
+@property (nonatomic,strong) NSString *distanceString;
 
 - (void)reloadData;
 

@@ -71,9 +71,7 @@
     if (index == 1) {
         [self.firstImageView removeFromSuperview];
         if (self.secondImageView&&self.secondImageView.image) {
-            self.firstImageView = self.secondImageView;
-            self.secondImageView = nil;
-            [self.firstImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.secondImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_offset(15*index+79*(index-1));
                 make.top.mas_offset(9);
                 make.width.and.height.mas_equalTo(79);

@@ -8,6 +8,10 @@
 
 #import "UMTBaseViewController.h"
 
+@class UMTDetailActivityCellModel;
+
 @interface UMTCheckSimpleController : UMTBaseViewController
+
+@property (nonatomic,strong) UMTDetailActivityCellModel *activityModel;
 
 @end

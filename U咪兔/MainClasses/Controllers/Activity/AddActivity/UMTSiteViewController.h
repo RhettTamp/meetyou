@@ -8,6 +8,10 @@
 
 #import "UMTBaseViewController.h"
 
+typedef void (^UMTSiteBlock)(NSString *site);
+
 @interface UMTSiteViewController : UMTBaseViewController
+
+@property (nonatomic,copy) UMTSiteBlock block;
 
 @end

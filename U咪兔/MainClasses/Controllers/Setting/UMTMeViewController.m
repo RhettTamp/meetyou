@@ -18,6 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUi];
+//    UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
+//    view.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:view];
+//    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+//    //    UIVibrancyEffect *effect = [UIVibrancyEffect effectForBlurEffect:blur];
+//    UIVisualEffectView *visualView = [[UIVisualEffectView alloc]initWithEffect:blur];
+//    visualView.frame = CGRectMake(0, 0, 120, 200);
+//    visualView.alpha = 0.8;
+////    self.visualView = visualView;
+//    [view addSubview:visualView];
+//    UIView *blueView = [[UIView alloc]initWithFrame:CGRectMake(0, 20, 50, 100)];
+//    blueView.backgroundColor = [UIColor blueColor];
+//    [visualView addSubview:blueView];
 }
 
 - (void)initUi{

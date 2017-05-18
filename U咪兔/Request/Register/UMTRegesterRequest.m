@@ -18,6 +18,7 @@
     NSDictionary *params = [sharedHelper yy_modelToJSONObject];
     if (sharedHelper.photo) {
         [params setValue:sharedHelper.photo forKey:@"photo"];
+        NSLog(@"%@",params[@"photo"]);
     }
     if (sharedHelper.photo2) {
         [params setValue:sharedHelper.photo2 forKey:@"photo2"];

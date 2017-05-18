@@ -20,6 +20,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+         NSArray *tagColors = @[kTagRedColor,kTagBlueColor,kTagGreenColor,kTagOrangeColor,kTagPurpleColor];
+        self.backgroundColor = tagColors[random()%5];
         self.layer.cornerRadius = 4;
         UIView *whiteView = [[UIView alloc]init];
         whiteView.backgroundColor = [UIColor whiteColor];

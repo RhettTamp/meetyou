@@ -121,74 +121,76 @@
     [self addSubview:contentLabel];
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(10);
-        make.width.mas_equalTo(UMTScreenWidth/2-5);
+        make.width.mas_equalTo(UMTScreenWidth/2-10);
         make.height.mas_equalTo(96);
         make.top.equalTo(timeLabel.mas_bottom).offset(10);
     }];
     self.contentLabel = contentLabel;
     
+    int side = (int)UMTScreenWidth*0.25;
+    int lineWidth = 16.0/375*UMTScreenWidth;
+    UMTCircleView *timeCirclr = [[UMTCircleView alloc]initWithRadius:side/2 circleWidth:lineWidth Progress:0.3];
+    timeCirclr.fillColor = Hex(0xf3f3f3);
+    timeCirclr.circleCocor = kCommonGreenColor;
+    [self addSubview:timeCirclr];
+    [timeCirclr mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(contentLabel.mas_right).offset(12);
+        make.width.and.height.mas_equalTo(side);
+        make.top.equalTo(timeLabel.mas_bottom).offset(22);
+    }];
+    self.timeCircle = timeCirclr;
     
-    
-    UMTCircleView *personCirclr = [[UMTCircleView alloc]initWithRadius:42 circleWidth:16 Progress:0.3];
-    personCirclr.circleCocor = kCommonGreenColor;
+    UMTCircleView *personCirclr = [[UMTCircleView alloc]initWithRadius:side/2-lineWidth-3 circleWidth:lineWidth Progress:0.6];
+    personCirclr.fillColor = Hex(0xf3f3f3);
+    personCirclr.circleCocor = Hex(0xFFB33A);
     [self addSubview:personCirclr];
     [personCirclr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(contentLabel.mas_right).offset(14);
-        make.width.and.height.mas_equalTo(84);
-        make.top.equalTo(timeLabel.mas_bottom).offset(22);
+        make.left.equalTo(timeCirclr.mas_left).offset(lineWidth+3);
+        make.width.and.height.mas_equalTo(side-lineWidth*2-6);
+        make.top.equalTo(timeCirclr.mas_top).offset(lineWidth+3);
     }];
     self.personCircle = personCirclr;
     
-    UMTCircleView *timeCircle = [[UMTCircleView alloc]initWithRadius:22 circleWidth:16 Progress:0.6];
-    timeCircle.circleCocor = Hex(0xFFB33A);
-    [self addSubview:timeCircle];
-    [timeCircle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(personCirclr.mas_left).offset(20);
-        make.width.and.height.mas_equalTo(44);
-        make.top.equalTo(personCirclr.mas_top).offset(20);
-    }];
-    self.timeCircle = timeCircle;
-    
-    UILabel *personCountLabel = [[UILabel alloc]init];
-    personCountLabel.font = [UIFont boldSystemFontOfSize:24];
-    personCountLabel.textColor = kCommonGreenColor;
-    personCountLabel.text = @"64";
-    [self addSubview:personCountLabel];
-    [personCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(personCirclr.mas_right).offset(15);
+    UILabel *timeCountLabel = [[UILabel alloc]init];
+    timeCountLabel.font = [UIFont boldSystemFontOfSize:24];
+    timeCountLabel.textColor = kCommonGreenColor;
+    timeCountLabel.text = @"64";
+    [self addSubview:timeCountLabel];
+    [timeCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(timeCirclr.mas_right).offset(15);
         make.top.equalTo(contentLabel.mas_top).offset(39);
-//        make.right.mas_offset(-50);
     }];
-    self.personCountLabel = personCountLabel;
+    self.timeCountLabel = timeCountLabel;
+    
     UILabel *percentLabel1 = [[UILabel alloc]init];
     percentLabel1.font = kFont(10);
     percentLabel1.textColor = kCommonGreenColor;
     percentLabel1.text = @"%";
     [self addSubview:percentLabel1];
     [percentLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(personCountLabel.mas_right);
-        make.bottom.equalTo(personCountLabel.mas_bottom).offset(-2);
+        make.left.equalTo(timeCountLabel.mas_right);
+        make.bottom.equalTo(timeCountLabel.mas_bottom).offset(-2);
 //        make.right.mas_offset(14);
     }];
     
-    UILabel *timeCountLabel = [[UILabel alloc]init];
-    timeCountLabel.font = [UIFont boldSystemFontOfSize:24];
-    timeCountLabel.textColor = [UIColor orangeColor];
-    timeCountLabel.text = @"53";
-    [self addSubview:timeCountLabel];
-    [timeCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(personCountLabel.mas_bottom).offset(8);
-        make.left.equalTo(personCountLabel.mas_left);
+    UILabel *personCountLabel = [[UILabel alloc]init];
+    personCountLabel.font = [UIFont boldSystemFontOfSize:24];
+    personCountLabel.textColor = [UIColor orangeColor];
+    personCountLabel.text = @"53";
+    [self addSubview:personCountLabel];
+    [personCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(timeCountLabel.mas_bottom).offset(8);
+        make.left.equalTo(timeCountLabel.mas_left);
     }];
-    self.timeCountLabel = timeCountLabel;
+    self.personCountLabel = personCountLabel;
     UILabel *percentLabel2 = [[UILabel alloc]init];
     percentLabel2.font = kFont(10);
     percentLabel2.textColor = [UIColor orangeColor];
     percentLabel2.text = @"%";
     [self addSubview:percentLabel2];
     [percentLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(timeCountLabel.mas_right);
-        make.bottom.equalTo(timeCountLabel.mas_bottom).offset(-2);
+        make.left.equalTo(personCountLabel.mas_right);
+        make.bottom.equalTo(personCountLabel.mas_bottom).offset(-2);
     }];
     
     UMTSiteView *siteView = [[UMTSiteView alloc]init];
@@ -282,9 +284,20 @@
     NSDate *applyStartTime = [format dateFromString:self.applyStartTime];
     NSDate *applyEndTime = [format dateFromString:self.applyEndTime];
     NSDate *now = [NSDate date];
-    CGFloat timePercent = [now timeIntervalSinceDate:applyStartTime]/[applyEndTime timeIntervalSinceDate:applyStartTime];
+    CGFloat timePercent;
+    if ([now timeIntervalSinceDate:applyStartTime] > 0) {
+        if ([now timeIntervalSinceDate:applyStartTime]>[applyEndTime timeIntervalSinceDate:applyStartTime]) {
+            timePercent = 1;
+        }else{
+            timePercent = [now timeIntervalSinceDate:applyStartTime]/[applyEndTime timeIntervalSinceDate:applyStartTime];
+        }
+    }else{
+        timePercent = 0;
+    }
+    
+    
     self.timeCircle.progress = timePercent;
-    self.timeCountLabel.text = [NSString stringWithFormat:@"%d",(int)timePercent*100];
+    self.timeCountLabel.text = [NSString stringWithFormat:@"%2.0f",timePercent*100];
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://xbbbbbb.cn/MeetU/%@",self.headStr]] placeholderImage:[UIImage imageNamed:@"m1"]];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     dateFormat.dateFormat = @"yyyy年MM月dd日";
@@ -293,7 +306,7 @@
     NSString *timeStr = [NSString stringWithFormat:@"%@-%@",starStr,endStr];
     self.timeLabel.text = timeStr;
     self.personCircle.progress = self.peoplePercent;
-    self.personCountLabel.text = [NSString stringWithFormat:@"%d",(int)self.peoplePercent*100];
+    self.personCountLabel.text = [NSString stringWithFormat:@"%2.0f",self.peoplePercent*100];
     self.titleLabel.text = self.title;
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.hyphenationFactor = 1.0;
@@ -335,7 +348,6 @@
         for (int i = 0; i < count; i++) {
             UMTTagView *tagView = [[UMTTagView alloc]init];
             tagView.tagStr = self.tags[i];
-            tagView.backgroundColor = kCommonGreenColor;
             [self.tagsViewArray addObject:tagView];
             [self addSubview:tagView];
             if (i == 0) {

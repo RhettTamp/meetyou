@@ -20,9 +20,9 @@
 
 @property (nonatomic,strong) UILabel *startLabel;
 @property (nonatomic,strong) UILabel *endLabel;
-@property (nonatomic,strong) UIButton *startTimeButton;
-@property (nonatomic,strong) UIButton *endTimeButton;
 @property (nonatomic,strong) UIView *lineView;
 @property (nonatomic,weak) id <UMTAddActivityTimeViewDelegate>delegate;
+@property (nonatomic,strong) NSString *startTime;
+@property (nonatomic,strong) NSString *endTime;
 
 @end

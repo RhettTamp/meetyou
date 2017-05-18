@@ -31,6 +31,35 @@ static UMTBaseRequest *baseRequest = nil;
     return baseRequest;
 }
 
+//- (void)postWithData:(NSData *)data params:(id)params andUrlPath:(NSString *)urlPath completionBlock:(UMTRequestCompletion)completionBlcok{
+//    NSString *urlStr = [baseUrl copy];
+//    urlStr = [NSString stringWithFormat:@"%@%@",urlStr,urlPath];
+//    if (self.requestToken && self.requestToken.length > 0) {
+//        urlStr = [NSString stringWithFormat:@"%@?token=%@",urlStr,self.requestToken];
+//    }
+//    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    config.timeoutIntervalForRequest = 30.0f;
+//    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
+//    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
+//                                                                @"text/html",
+//                                                                @"image/jpeg",
+//                                                                @"image/png",
+//                                                                @"application/octet-stream",
+//                                                                @"text/json",
+//                                                                nil];
+//    [sessionManager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        [formData appendPartWithFormData:[str dataUsingEncoding:NSUTF8StringEncoding]
+//                                    name:@"key1"];
+//        [formData appendPartWithFileData:imgData name:@"imagefile" fileName:@"img.jpg" mimeType:@"image/jpeg"];
+//    } progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        
+//    }];
+//}
+
 - (void)requestWithType:(UMTRequestType)type params:(id)params andUrlPath:(NSString *)urlPath completionBlock:(UMTRequestCompletion)completionBlock{
     NSString *urlStr = [baseUrl copy];
     urlStr = [NSString stringWithFormat:@"%@%@",urlStr,urlPath];
@@ -40,6 +69,13 @@ static UMTBaseRequest *baseRequest = nil;
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.timeoutIntervalForRequest = 30.0f;
     AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:config];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",
+                                                         @"text/html",
+                                                         @"image/jpeg",
+                                                         @"image/png",
+                                                         @"application/octet-stream",
+                                                         @"text/json",
+                                                         nil];
     if (type == UMTRequestTypeGet) {
         [sessionManager GET:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if (completionBlock) {

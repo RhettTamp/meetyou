@@ -13,10 +13,11 @@
 #import "NSString+Extension.h"
 #import "UMTTimeHelper.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface UMTSimpleActivityCell ()
+@interface UMTSimpleActivityCell ()<CLLocationManagerDelegate>
 
-@property (nonatomic,strong) UMTCircleView *timeCircle;
+@property (nonatomic,strong) UMTCircleView *personCircle;
 @property (nonatomic,strong) UILabel *timeLabel;
 @property (nonatomic,strong) UILabel *joinedProgressLabel;
 @property (nonatomic,strong) UILabel *titleLabel;
@@ -29,11 +30,14 @@
 //@property (nonatomic,strong) NSMutableArray *tagViews;
 @property (nonatomic,strong) UMTTagView *tagView;
 @property (nonatomic,strong) UIView *cuttingLine;
+@property (nonatomic,strong) UILabel *distanceLable;
 
 @end
 
 @implementation UMTSimpleActivityCell
-
+{
+    double nowLat,nowLng;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -45,19 +49,21 @@
 
 - (void)initSubViews{
     [self addborder];
-    
-    UMTCircleView *cir = [[UMTCircleView alloc]initWithRadius:22 circleWidth:16 Progress:0.6];
+    int side = (int)UMTScreenWidth*62.0/375;
+    int lineWidth = 16.0/375*UMTScreenWidth;
+    UMTCircleView *cir = [[UMTCircleView alloc]initWithRadius:side/2 circleWidth:lineWidth Progress:0.6];
+    cir.fillColor = Hex(0xececec);
     cir.circleCocor = Hex(0xffb33a);
     [self addSubview:cir];
     [cir mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_offset(20);
+        make.left.mas_offset(15);
         make.top.mas_offset(15);
-        make.width.and.height.mas_equalTo(44);
+        make.width.and.height.mas_equalTo(side);
     }];
-    self.timeCircle = cir;
+    self.personCircle = cir;
     
     UILabel *timeLabel = [[UILabel alloc]init];
-    timeLabel.text = @"00:09:48";
+    timeLabel.text = @"00:09:09";
     timeLabel.font = [UIFont boldSystemFontOfSize:15];
     [self addSubview:timeLabel];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -140,37 +146,37 @@
     }];
     self.cuttingLine = cuttingLineView;
     
-    NSInteger count = 3;//self.joinedArray.count;
+//    NSInteger count = 3;//self.joinedArray.count;
     self.joinedImgs = [NSMutableArray array];
-    if (count > 4) {
-        for (int i = 0; i < 4; i ++) {
-            UIImageView *img = [[UIImageView alloc]init];
-            img.layer.cornerRadius = 8;
-            NSString *headImgStr = [NSString stringWithFormat:@"m%d",arc4random()%10];
-            img.image = [UIImage imageNamed:headImgStr];
-            [self addSubview:img];
-            [img mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(cuttingLineView.mas_right).offset(8*(i+1)+20*i);
-                make.width.and.height.mas_equalTo(20);
-                make.bottom.equalTo(headImg.mas_bottom);
-            }];
-            [self.joinedImgs addObject:img];
-        }
-    }else if (count > 0){
-        for (int i = 0; i < count; i ++) {
-            UIImageView *img = [[UIImageView alloc]init];
-            img.layer.cornerRadius = 8;
-            NSString *headImgStr = [NSString stringWithFormat:@"m%d",arc4random()%10];
-            img.image = [UIImage imageNamed:headImgStr];
-            [self addSubview:img];
-            [img mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(cuttingLineView.mas_right).offset(8*(i+1)+20*i);
-                make.width.and.height.mas_equalTo(20);
-                make.bottom.equalTo(headImg.mas_bottom);
-            }];
-            [self.joinedImgs addObject:img];
-        }
-    }
+//    if (count > 4) {
+//        for (int i = 0; i < 4; i ++) {
+//            UIImageView *img = [[UIImageView alloc]init];
+//            img.layer.cornerRadius = 8;
+//            NSString *headImgStr = [NSString stringWithFormat:@"m%d",arc4random()%10];
+//            img.image = [UIImage imageNamed:headImgStr];
+//            [self addSubview:img];
+//            [img mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(cuttingLineView.mas_right).offset(8*(i+1)+20*i);
+//                make.width.and.height.mas_equalTo(20);
+//                make.bottom.equalTo(headImg.mas_bottom);
+//            }];
+//            [self.joinedImgs addObject:img];
+//        }
+//    }else if (count > 0){
+//        for (int i = 0; i < count; i ++) {
+//            UIImageView *img = [[UIImageView alloc]init];
+//            img.layer.cornerRadius = 8;
+//            NSString *headImgStr = [NSString stringWithFormat:@"m%d",arc4random()%10];
+//            img.image = [UIImage imageNamed:headImgStr];
+//            [self addSubview:img];
+//            [img mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(cuttingLineView.mas_right).offset(8*(i+1)+20*i);
+//                make.width.and.height.mas_equalTo(20);
+//                make.bottom.equalTo(headImg.mas_bottom);
+//            }];
+//            [self.joinedImgs addObject:img];
+//        }
+//    }
     
     UILabel *contentLabel = [[UILabel alloc]init];
     contentLabel.font = kFont(15);
@@ -179,9 +185,9 @@
     [self addSubview:contentLabel];
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(headImg.mas_left);
-        make.top.equalTo(headImg.mas_bottom).offset(3);
-        make.right.mas_offset(-5);
-        make.height.mas_equalTo(20*3);
+        make.top.equalTo(headImg.mas_bottom).offset(8);
+        make.right.mas_offset(-10);
+        make.height.mas_equalTo(63);
     }];
     self.contentLabel = contentLabel;
     
@@ -190,17 +196,17 @@
     siteView.site = @"重庆邮电大学";
     [self addSubview:siteView];
     [siteView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_offset(5);
-        make.top.equalTo(contentLabel.mas_bottom).offset(3);
-        make.height.mas_equalTo(20);
+        make.left.equalTo(headImg);
+        make.top.equalTo(contentLabel.mas_bottom).offset(8);
+        make.height.mas_equalTo(22);
 //        make.width.mas_equalTo(120);
     }];
     self.siteView = siteView;
     
     UILabel *hintLabel = [[UILabel alloc]init];
     hintLabel.text = @"距你的位置";
-    hintLabel.font = kFont(13);
-    hintLabel.textColor = kLineColor;
+    hintLabel.font = kFont(11);
+    hintLabel.textColor = [UIColor colorWithRGB:123 green:123 blue:123];
     [self addSubview:hintLabel];
     [hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(5);
@@ -211,21 +217,23 @@
     UILabel *distanceLabel = [[UILabel alloc] init];
     distanceLabel.textColor = kCommonGreenColor;
     distanceLabel.text = @"<100m";
-    distanceLabel.font = kFont(13);
+    distanceLabel.font = kFont(11);
     [self addSubview:distanceLabel];
     [distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(hintLabel.mas_right).offset(5);
         make.top.equalTo(hintLabel.mas_top);
         make.height.equalTo(hintLabel);
     }];
+    self.distanceLable = distanceLabel;
     
     UMTTagView *tagView = [[UMTTagView alloc]init];
     tagView.backgroundColor = kCommonGreenColor;
+//    tagView.tagStr = @"旅游";
     [self addSubview:tagView];
     [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_offset(5);
-        make.top.equalTo(hintLabel.mas_bottom).offset(3);
-        make.height.mas_equalTo(20);
+        make.left.equalTo(headImg.mas_left);
+        make.top.equalTo(hintLabel.mas_bottom).offset(10);
+        make.height.mas_equalTo(22);
 //        make.width.mas_equalTo(100);
     }];
     self.tagView = tagView;
@@ -242,31 +250,18 @@
     }];
 }
 
-//- (void)layoutSubviews{
-//    [super layoutSubviews];
-//    self.tagView.tagStr = @"滴滴打车";
-////    CGSize size = [NSString getAttributeSizeWithText:@"滴滴打车" fontSize:13];
-////    self.tagView.size = CGSizeMake(size.width+12, self.tagView.frame.size.height);
-//    
-//    self.siteView.site = @"重庆邮电大学";
-////    CGSize size2 = [NSString getAttributeSizeWithText:@"重庆邮电大学" fontSize:13];
-////    self.siteView.size = CGSizeMake(size2.width+30, self.tagView.frame.size.height);
-//    
-//    [self layoutIfNeeded];
-//}
-
 - (void)reloadData{
     self.titleLabel.text = self.title;
     NSDateFormatter *format = [[NSDateFormatter alloc]init];
     format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSDate *endDate = [format dateFromString:self.endTime];
+    NSDate *endDate = [format dateFromString:self.applyEndTime];
     NSDate *now = [NSDate date];
     NSTimeInterval interval = [endDate timeIntervalSinceDate:now];
-//    NSDateFormatter *timeFormate = [[NSDateFormatter alloc]init];
-//    format.dateFormat = @"HH:mm:ss";
     if (interval > 0) {
         NSString *timeStr = [UMTTimeHelper timeFromTimeInterval:interval];
         self.timeLabel.text = timeStr;
+    }else{
+        self.timeLabel.text = @"00:00:00";
     }
     //设置字间距 NSKernAttributeName:@1.5f
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
@@ -274,13 +269,16 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.content];
     [attributedString addAttributes:dic range:NSMakeRange(0, [self.content length])];
     self.contentLabel.attributedText = attributedString;
-    self.timeCircle.progress = self.persenCount;
-    self.joinedProgressLabel.text = [NSString stringWithFormat:@"%lu",(NSInteger)self.persenCount*100];
+    self.personCircle.progress = self.persenCount;
+    self.joinedProgressLabel.text = [NSString stringWithFormat:@"%2.0f",self.persenCount*100];
+ 
     self.siteView.site = self.site;
-//    self.tagView.tagStr = self.tags[0];
+    if (self.tags&&self.tags.count>0) {
+        self.tagView.tagStr = self.tags[0];
+    }
     NSString *url = [NSString stringWithFormat:@"https://xbbbbbb.cn/MeetU/%@",self.headUrl];
     [self.sponsorHead sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"m1"]];
-    NSInteger count = 3;//self.joinedArray.count;
+    NSInteger count = self.joinedArray.count;
     self.joinedImgs = [NSMutableArray array];
     if (count > 4) {
         for (int i = 0; i < 4; i ++) {
@@ -311,6 +309,11 @@
             [self.joinedImgs addObject:img];
         }
     }
+}
+
+- (void)setDistanceString:(NSString *)distanceString{
+    self.distanceLable.text = distanceString;
+    _distanceString = distanceString;
 }
 
 

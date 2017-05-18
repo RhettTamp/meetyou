@@ -52,9 +52,11 @@
     
     for (int i = 0; i < self.numberofItems; i++) {
         UILabel *nameLabel = [[UILabel alloc]init];
+        nameLabel.font = kFont(17);
+        nameLabel.textColor = [UIColor colorWithRGB:51 green:51 blue:51];
         [self addSubview:nameLabel];
         [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_offset(8);
+            make.left.mas_offset(15);
             make.height.mas_equalTo(kItemHeight);
             make.top.mas_offset(i*kItemHeight);
         }];

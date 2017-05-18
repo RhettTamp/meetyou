@@ -15,6 +15,7 @@
 #import "UMTRegisterHelper.h"
 #import "UMTRegesterRequest.h"
 #import "UMTKeychainTool.h"
+#import "UMTComitSuccessController.h"
 
 #define kItemHeight 44
 
@@ -151,10 +152,10 @@
         [[UMTProgressHUD sharedHUD] showWithText:@"请输入学号" inView:self.view hideAfterDelay:0.5];
         return;
     }
-    if (!pictures || pictures.count == 0) {
-        [[UMTProgressHUD sharedHUD] showWithText:@"请上传学生证" inView:self.view hideAfterDelay:0.5];
-        return;
-    }
+    //    if (!pictures || pictures.count == 0) {
+    //        [[UMTProgressHUD sharedHUD] showWithText:@"请上传学生证" inView:self.view hideAfterDelay:0.5];
+    //        return;
+    //    }
     NSInteger count = pictures.count;
     UMTRegisterHelper *sharedHelper = [UMTRegisterHelper sharedHelper];
     if (count == 1) {
@@ -179,8 +180,8 @@
                 [UMTKeychainTool save:@"lastDate" data:date];
                 
                 [[UMTProgressHUD sharedHUD] showWithText:@"注册成功" inView:self.view hideAfterDelay:0.5];
-                UMTRootViewController *rootVc = [[UMTRootViewController alloc]init];
-                [self presentViewController:rootVc animated:YES completion:nil];
+                UMTComitSuccessController *successVC = [[UMTComitSuccessController alloc]init];
+                [self presentViewController:successVC animated:YES completion:nil];
             }else{
                 [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",response[@"info"]] inView:self.view hideAfterDelay:0.5];
             }
@@ -206,6 +207,7 @@
                 [[UMTProgressHUD sharedHUD] showWithText:@"注册成功" inView:self.view hideAfterDelay:0.5];
                 UMTRootViewController *rootVc = [[UMTRootViewController alloc]init];
                 [self presentViewController:rootVc animated:YES completion:nil];
+                
             }else{
                 [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",response[@"info"]] inView:self.view hideAfterDelay:0.5];
             }

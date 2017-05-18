@@ -24,7 +24,7 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [titleLabel adjustsFontSizeToFitWidth];
         titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.font = kFont(20);
+        titleLabel.font = [UIFont boldSystemFontOfSize:24];;
         [self addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_offset(80);
@@ -36,11 +36,11 @@
         
         UILabel *timeLabel = [[UILabel alloc]init];
         timeLabel.textColor = [UIColor whiteColor];
+        timeLabel.font = kFont(13);
         timeLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:timeLabel];
         [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.width.mas_equalTo(200);
             make.top.equalTo(titleLabel.mas_bottom).offset(10);
         }];
         [timeLabel adjustsFontSizeToFitWidth];
@@ -74,7 +74,7 @@
     _time = time;
     self.timeLabel.text = time;
     [self.timeLabel adjustsFontSizeToFitWidth];
-    [self layoutIfNeeded];
+//    [self layoutIfNeeded];
 }
 
 @end

@@ -10,6 +10,7 @@
 
 @implementation UIColor (extension)
 
+
 + (UIColor *)colorWithRGBHex:(UInt32)hex
 {
     int r = (hex >> 16) & 0xFF;
@@ -54,6 +55,10 @@
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
     
     return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
+}
+
++ (UIColor *)colorWithRGB:(NSInteger)red green:(NSInteger)green blue:(NSInteger)blue{
+    return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
 }
 
 @end

@@ -13,11 +13,11 @@
 #import "UMTSaveUserInfoHelper.h"
 #import "UMTNavigationController.h"
 #import "UMTRefreshToken.h"
-//#import <BaiduMapKit/BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapKit/BaiduMapAPI_Base/BMKBaseComponent.h>
 #import "UMTKeychainTool.h"
 #import "UMTBaseRequest.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<BMKGeneralDelegate>
 
 @end
 
@@ -30,11 +30,11 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-//    BMKMapManager *mapManager = [[BMKMapManager alloc]init];
-//    BOOL set = [mapManager start:@"foiZgrIuq4XGlCWUlf6HGlHj3kprgX17" generalDelegate:self];
-//    if (!set) {
-//        NSLog(@"manager start failed!");
-//    }
+    BMKMapManager *mapManager = [[BMKMapManager alloc]init];
+    BOOL set = [mapManager start:@"foiZgrIuq4XGlCWUlf6HGlHj3kprgX17" generalDelegate:self];
+    if (!set) {
+        NSLog(@"manager start failed!");
+    }
     NSString *token = [UMTKeychainTool load:kTokenKey];
     
     if (token && token.length > 0) {
@@ -43,7 +43,7 @@
         NSDate *date = [NSDate date];
         NSDate *lastDate = [UMTKeychainTool load:@"lastDate"];
         NSTimeInterval interval = [date timeIntervalSinceDate:lastDate];
-        if (interval > 24*3*3600) {
+        if (interval > 24*1*3600) {
             [UMTRefreshToken refreshTokenWithOldToken:token];
             [UMTKeychainTool save:@"lastDate" data:date];
         }

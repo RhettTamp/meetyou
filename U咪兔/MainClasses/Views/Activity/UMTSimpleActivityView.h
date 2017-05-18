@@ -10,5 +10,9 @@
 
 @interface UMTSimpleActivityView : UIView
 
+@property (nonatomic,strong) NSString *timeString;
+@property (nonatomic,assign) NSInteger limitPerson;
+@property (nonatomic,assign) NSInteger joinedPerson;
+@property (nonatomic,strong) NSString *state;
 
 @end

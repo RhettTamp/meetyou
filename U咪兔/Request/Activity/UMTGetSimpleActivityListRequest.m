@@ -11,9 +11,9 @@
 
 @implementation UMTGetSimpleActivityListRequest
 
-+ (void)GetActivityListWithCompletionBlock:(void(^)(NSError *erro, id response))completionBlock{
++ (void)GetActivityListWithPage:(NSInteger)page CompletionBlock:(void(^)(NSError *erro, id response))completionBlock{
     UMTBaseRequest *sharedRequest = [UMTBaseRequest sharedRequest];
-    NSDictionary *params = @{@"type":@2};
+    NSDictionary *params = @{@"page":[NSNumber numberWithInteger:page],@"type":@2};
     [sharedRequest requestWithType:UMTRequestTypeGet params:params andUrlPath:@"activity" completionBlock:^(id response, NSString *message, NSError *erro) {
         if (erro) {
             if (completionBlock) {

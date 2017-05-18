@@ -10,6 +10,10 @@
 
 @interface UMTDetailActicityView : UIView
 
-
+@property (nonatomic,strong) NSString *startTime;
+@property (nonatomic,strong) NSString *endTime;
+@property (nonatomic,assign) NSInteger limitPerson;
+@property (nonatomic,assign) NSInteger joinedPerson;
+@property (nonatomic,strong) NSString *state;
 
 @end

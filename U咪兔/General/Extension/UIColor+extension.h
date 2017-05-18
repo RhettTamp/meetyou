@@ -12,5 +12,6 @@
 
 + (UIColor *)colorWithRGBHex:(UInt32)hex;
 + (UIColor *)colorWithHexString: (NSString *)color;
++ (UIColor *)colorWithRGB:(NSInteger)red green:(NSInteger)green blue:(NSInteger)blue;
 
 @end

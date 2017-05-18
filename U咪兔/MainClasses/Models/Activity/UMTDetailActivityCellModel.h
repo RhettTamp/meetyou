@@ -24,8 +24,9 @@
 @property (nonatomic,strong) NSArray *tags;
 @property (nonatomic,assign) int joinedPeople;
 @property (nonatomic,assign) int peopleLimit;
-@property (nonatomic,strong) NSString *type;
-@property (nonatomic,assign) CGFloat peopleCount; //人数所占百分比，保留两位百分数
+@property (nonatomic,assign) int type;
+@property (nonatomic,strong) NSString *status;
+@property (nonatomic,assign) double peopleCount; //人数所占百分比，保留两位百分数
 //@property (nonatomic,assign) CGFloat *timeCount;  //时间所占百分比
 @property (nonatomic,strong) NSArray *joinedPersons;
 

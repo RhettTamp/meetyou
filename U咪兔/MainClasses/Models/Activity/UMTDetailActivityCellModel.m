@@ -23,7 +23,7 @@
              @"joinedPeople":@"people_number_join",
              @"peopleLimit":@"people_number_up",
              @"type":@"type",
-             @"peopleCount":@"0.04",
+             @"peopleCount":@"PercentOfPeople",
              @"applyStartTime":@"entrie_time_start",
              @"applyEndTime":@"entrie_time_end"};
 }

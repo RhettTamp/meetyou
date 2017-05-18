@@ -19,6 +19,13 @@
 #define kLineColor Hex(0xdedfe0)
 #define kGrayFontColor Hex(0x8f8e94)
 #define kCommonGray_Color Hex(0xeaeaea)
+#define kCircleOrangeColor Hex(0xFFB33A)
+
+#define kTagRedColor [UIColor colorWithRGB:240 green:67 blue:109]
+#define kTagGreenColor kCommonGreenColor
+#define kTagOrangeColor [UIColor colorWithRGB:240 green:113 blue:58]
+#define kTagBlueColor Hex(0x129fdb)
+#define kTagPurpleColor Hex(0x862ea)
 
 #define kStandardPx(Px) round(Px/1.92 * 10)/10          //把标注转化成实际宽高
 

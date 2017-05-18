@@ -59,11 +59,14 @@
     grayLayer.fillColor = nil;
     grayLayer.frame = self.bounds;
     [self.layer addSublayer:grayLayer];
-    grayLayer.strokeColor = Hex(0xF3F3F3).CGColor;
+    grayLayer.strokeColor = self.fillColor.CGColor;
     grayLayer.lineCap = kCALineCapRound;
     grayLayer.lineWidth = self.circleWidth;
     UIBezierPath *circlePath = [UIBezierPath bezierPathWithArcCenter:center radius:self.radius startAngle:-M_PI_2 endAngle:M_PI*3/2 clockwise:YES];
     grayLayer.path = circlePath.CGPath;
+
+    
+    
     
     _shapeLayer = [[CAShapeLayer alloc]init];
     self.shapeLayer.fillColor = nil;
@@ -78,7 +81,6 @@
     CGFloat endAngle = self.progress*M_PI*2+startAngle;
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:self.radius startAngle:startAngle endAngle:endAngle clockwise:YES];
     self.shapeLayer.path = path.CGPath;
-    
     
 }
 

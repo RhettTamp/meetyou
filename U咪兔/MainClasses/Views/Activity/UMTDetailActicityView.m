@@ -11,7 +11,7 @@
 @interface UMTDetailActicityView ()
 
 @property (nonatomic,strong) UILabel *personLabel;
-@property (nonatomic,strong) UILabel *joinedPerson;
+@property (nonatomic,strong) UILabel *joinedPersonLabel;
 @property (nonatomic,strong) UILabel *startTimeLabel;
 @property (nonatomic,strong) UILabel *endTimeLabel;
 @property (nonatomic,strong) UILabel *typeLabel;
@@ -61,7 +61,7 @@
         make.right.equalTo(self.mas_right);
         make.top.equalTo(jLabel.mas_top);
     }];
-    self.joinedPerson = joinedLabel;
+    self.joinedPersonLabel = joinedLabel;
     
     UILabel *sLabel = [[UILabel alloc]init];
     sLabel.text = @"报名开始时间:";
@@ -127,6 +127,38 @@
         make.top.equalTo(stLabel.mas_top);
     }];
     self.statusLabel = statusLabel;
+}
+
+- (void)setStartTime:(NSString *)startTime{
+    _startTime = startTime;
+    self.startTimeLabel.text = startTime;
+}
+
+- (void)setEndTime:(NSString *)endTime{
+    _endTime = endTime;
+    self.endTimeLabel.text = endTime;
+}
+
+- (void)setLimitPerson:(NSInteger)limitPerson{
+    _limitPerson = limitPerson;
+    self.personLabel.text = [NSString stringWithFormat:@"%lu人",limitPerson];
+}
+
+- (void)setJoinedPerson:(NSInteger)joinedPerson{
+    _joinedPerson = joinedPerson;
+    self.joinedPersonLabel.text = [NSString stringWithFormat:@"%lu人",joinedPerson];
+}
+
+- (void)setState:(NSString *)state{
+    _state = state;
+    self.statusLabel.text = state;
+    if ([state isEqualToString:@"报名尚未开始"]) {
+        self.statusLabel.textColor = kCircleOrangeColor;
+    }else if ([state isEqualToString:@"报名进行中"]){
+        self.statusLabel.textColor = kCommonGreenColor;
+    }else if ([state isEqualToString:@"报名已经结束"]){
+        self.statusLabel.textColor = Hex(0xf0436d);
+    }
 }
 
 @end

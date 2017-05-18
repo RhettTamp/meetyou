@@ -10,6 +10,6 @@
 
 @interface UMTGetSimpleActivityListRequest : NSObject
 
-+ (void)GetActivityListWithCompletionBlock:(void(^)(NSError *erro, id response))completionBlock;
++ (void)GetActivityListWithPage:(NSInteger)page CompletionBlock:(void(^)(NSError *erro, id response))completionBlock;
 
 @end

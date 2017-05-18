@@ -8,6 +8,10 @@
 
 #import "UMTBaseViewController.h"
 
+typedef void(^UMTTagChooseBlock)(NSArray *);
+
 @interface UMTTagChooseController : UMTBaseViewController
+
+@property (nonatomic,copy) UMTTagChooseBlock block;
 
 @end

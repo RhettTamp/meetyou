@@ -15,7 +15,7 @@
 @property (nonatomic,assign) CGFloat circleWidth;
 @property (nonatomic,assign) CGFloat progress;
 @property (nonatomic,strong) UIColor *circleCocor;
-
+@property (nonatomic,strong) UIColor *fillColor;
 - (instancetype)initWithRadius:(CGFloat)radius circleWidth:(CGFloat)width Progress:(CGFloat)progress;
 
 @end

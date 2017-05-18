@@ -26,7 +26,7 @@
         [self addSubview:exitButton];
         [exitButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_offset(10);
-            make.width.and.height.mas_equalTo(20);
+            make.width.and.height.mas_equalTo(24);
             make.centerY.equalTo(self);
         }];
         

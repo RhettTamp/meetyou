@@ -9,10 +9,12 @@
 #import "UMTAddActivityTimeView.h"
 #import "NSString+Extension.h"
 
-#define kItemHeight 40
+#define kItemHeight 44
 
 @interface UMTAddActivityTimeView ()
 
+@property (nonatomic,strong) UIButton *startTimeButton;
+@property (nonatomic,strong) UIButton *endTimeButton;
 
 @end
 
@@ -32,8 +34,9 @@
 }
 
 - (void)initSubViews{
-    UILabel *startLabel = [[UILabel alloc]initWithFrame:CGRectMake(8, 0, 40, kItemHeight)];
+    UILabel *startLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 40, kItemHeight)];
     startLabel.text = @"开始";
+    startLabel.font = kFont(17);
     [self addSubview:startLabel];
 //    [startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.mas_offset(8);
@@ -41,12 +44,15 @@
 //        make.height.mas_equalTo(40);
 //    }];
     self.startLabel = startLabel;
-    
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateformat = [[NSDateFormatter alloc]init];
+    dateformat.dateFormat = @"yyyy/MM/dd,HH:mm";
+    NSString *dateStr = [dateformat stringFromDate:date];
     CGSize stringSize = [NSString getAttributeSizeWithText:@"2017/04/18,19:00" fontSize:20];
     UIButton *startTimeButton = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-8-stringSize.width, 0, stringSize.width, kItemHeight)];
-    [startTimeButton setTitle:@"2017/04/18,19:00" forState:UIControlStateNormal];
+    [startTimeButton setTitle:dateStr forState:UIControlStateNormal];
     [startTimeButton setTitleColor:kCommonGreenColor forState:UIControlStateSelected];
-    [startTimeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [startTimeButton setTitleColor:[UIColor colorWithRGB:142 green:142 blue:142] forState:UIControlStateNormal];
     [startTimeButton addTarget:self action:@selector(startTimeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:startTimeButton];
 //    [startTimeButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,7 +72,7 @@
 //    }];
     self.lineView = lineView;
     
-    UILabel *endTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(8, kItemHeight, 40, kItemHeight)];
+    UILabel *endTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, kItemHeight, 40, kItemHeight)];
     endTimeLabel.text = @"结束";
     [self addSubview:endTimeLabel];
 //    [endTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -77,9 +83,9 @@
     self.endLabel = endTimeLabel;
     
     UIButton *endTimeButton = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.frame)-8-stringSize.width, kItemHeight, stringSize.width, kItemHeight)];
-    [endTimeButton setTitle:@"2017/04/18,19:00" forState:UIControlStateNormal];
+    [endTimeButton setTitle:dateStr forState:UIControlStateNormal];
     [endTimeButton setTitleColor:kCommonGreenColor forState:UIControlStateSelected];
-    [endTimeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [endTimeButton setTitleColor:[UIColor colorWithRGB:142 green:142 blue:142] forState:UIControlStateNormal];
     [endTimeButton addTarget:self action:@selector(endTimeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:endTimeButton];
 //    [endTimeButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -114,7 +120,12 @@
     }
 }
 
+- (NSString *)startTime{
+    return self.startTimeButton.titleLabel.text;
+}
 
-
+- (NSString *)endTime{
+    return self.endTimeButton.titleLabel.text;
+}
 
 @end

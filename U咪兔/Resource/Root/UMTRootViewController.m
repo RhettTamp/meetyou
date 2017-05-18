@@ -15,13 +15,17 @@
 #import "UMTTabBar.h"
 #import "UMTIssueDetailActivityController.h"
 #import "UMTIssueSimpleActivityController.h"
+#import "UMTActivityTypeView.h"
 
 @interface UMTRootViewController ()<UMTTabBarDelegate>
 
 @property (nonatomic,strong) NSArray *tabBarDefines;
 @property (nonatomic,strong) UMTTabBar *myTabBar;
-@property (nonatomic,strong) UIButton *issueDetailButton;
-@property (nonatomic,strong) UIButton *issueSimpleButton;
+@property (nonatomic,strong) UMTActivityTypeView *detailTypeView;
+@property (nonatomic,strong) UMTActivityTypeView *simpleTypeView;
+//@property (nonatomic,strong) UIButton *issueSimpleButton;
+@property (nonatomic,strong) UIVisualEffectView *visualView;
+@property (nonatomic,strong) UIButton *quitIssueButton;
 
 @end
 
@@ -34,35 +38,86 @@
     isShowIssueButton = NO;
     [self configSubControllers];
     [self.tabBar addSubview:self.myTabBar];
-    [self initIssueButton];
+    [self initIssueView];
 }
 
 
-- (void)initIssueButton{
-    UIButton *detailButton = [[UIButton alloc]init];
-    [detailButton setTitle:@"精心计划" forState:UIControlStateNormal];
-    detailButton.backgroundColor = kCommonGreenColor;
-    detailButton.alpha = 0;
-    [detailButton addTarget:self action:@selector(issueDetailActivity) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:detailButton];
-    self.issueDetailButton = detailButton;
-    [detailButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_offset(-64);
-        make.centerX.equalTo(self.view).offset(-40);
-        make.width.mas_equalTo(80);
-    }];
+- (void)initIssueView{
     
-    UIButton *simpleButton = [[UIButton alloc]init];
-    [simpleButton setTitle:@"说走就走" forState:UIControlStateNormal];
-    simpleButton.backgroundColor = kCommonGreenColor;
-    simpleButton.alpha = 0;
-    [simpleButton addTarget:self action:@selector(issueSimpleActivity) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:simpleButton];
-    self.issueSimpleButton = simpleButton;
-    [simpleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_offset(-64);
-        make.centerX.equalTo(self.view).offset(40);
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *visualView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    visualView.frame = self.view.bounds;
+    visualView.alpha = 0;
+    self.visualView = visualView;
+    [self.view addSubview:visualView];
+    
+    UILabel *titleLabel = [[UILabel alloc]init];
+    titleLabel.text = @"选择发布活动类型";
+    titleLabel.textColor = Hex(0x8e8e8e);
+    titleLabel.font = kFont(24);
+    [visualView addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(visualView);
+        make.top.mas_offset(UMTScreenHeight*200/667.0);
+    }];
+    UILabel *label = [[UILabel alloc]init];
+    label.text = @"SELECT TYPE";
+    label.textColor = Hex(0x8e8e8e);
+    label.font = kFont(15);
+    [visualView addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(titleLabel.mas_bottom).offset(8);
+        make.centerX.equalTo(visualView);
+    }];
+
+    UMTActivityTypeView *detailType = [[UMTActivityTypeView alloc]init];
+    detailType.name = @"精心计划";
+    detailType.buttonImage = [UIImage imageNamed:@"planActivity"];
+    detailType.alpha = 0;
+    __weak typeof(self) weakSelf = self;
+    detailType.block = ^(UIButton *button) {
+        __strong typeof(self) strongSelf = weakSelf;
+        [strongSelf issueDetailActivity];
+        [strongSelf hideIssueView];
+    };
+    [self.view addSubview:detailType];
+//    [visualView.contentView addSubview:issueView];
+    [detailType mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_offset(-80);
+        make.centerX.equalTo(self.view).offset(-60);
         make.width.mas_equalTo(80);
+        make.height.mas_equalTo(80);
+    }];
+    self.detailTypeView = detailType;
+    
+    UMTActivityTypeView *simpleType = [[UMTActivityTypeView alloc]init];
+    simpleType.name = @"说走就走";
+    simpleType.buttonImage = [UIImage imageNamed:@"rightnowActivity"];
+    simpleType.alpha = 0;
+    simpleType.block = ^(UIButton *button) {
+        __strong typeof(self) strongSelf = weakSelf;
+        [strongSelf issueSimpleActivity];
+        [strongSelf hideIssueView];
+    };
+    [self.view addSubview:simpleType];
+    [simpleType mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_offset(-80);
+        make.centerX.equalTo(self.view).offset(60);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(80);
+    }];
+    self.simpleTypeView = simpleType;
+    
+    UIButton *quitIssueButton = [[UIButton alloc]init];
+    [quitIssueButton setImage:[UIImage imageNamed:@"exit"] forState:UIControlStateNormal];
+    quitIssueButton.alpha = 0;
+    [quitIssueButton addTarget:self action:@selector(hideIssueView) forControlEvents:UIControlEventTouchUpInside];
+    self.quitIssueButton = quitIssueButton;
+    [self.view addSubview:quitIssueButton];
+    [quitIssueButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.and.height.mas_equalTo(19);
+        make.centerX.equalTo(self.view);
+        make.bottom.mas_offset(-15);
     }];
 }
 
@@ -125,24 +180,45 @@
         self.selectedIndex = index-UMTItemActivity;
         return;
     }
-    
-    if (isShowIssueButton == NO) {
-        [self showIssueButton];
-        isShowIssueButton = YES;
-    }else{
-        [self hideIssueButton];
-        isShowIssueButton = NO;
-    }
+    [self showIssueView];
+//    if (isShowIssueButton == NO) {
+//        [self showIssueView];
+//        isShowIssueButton = YES;
+//    }else{
+//        [self hideIssueView];
+//        isShowIssueButton = NO;
+//    }
 }
 
-- (void)showIssueButton{
-    self.issueSimpleButton.alpha = 1;
-    self.issueDetailButton.alpha = 1;
+- (void)showIssueView{
+    self.detailTypeView.centerY += 200;
+    self.simpleTypeView.centerY += 200;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.visualView.alpha = 1;
+        self.detailTypeView.alpha = 1;
+        self.simpleTypeView.alpha = 1;
+        self.quitIssueButton.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.detailTypeView.centerY -= 200;
+            self.simpleTypeView.centerY -= 200;
+        } completion:nil];
+    }];
+   
 }
 
-- (void)hideIssueButton{
-    self.issueDetailButton.alpha = 0;
-    self.issueSimpleButton.alpha = 0;
+- (void)hideIssueView{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.visualView.alpha = 0;
+        self.detailTypeView.centerY += 200;
+        self.simpleTypeView.centerY += 200;
+        self.quitIssueButton.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.detailTypeView.alpha = 0;
+        self.simpleTypeView.alpha = 0;
+        self.detailTypeView.centerY -= 200;
+        self.simpleTypeView.centerY -= 200;
+    }];
 }
 
 - (void)issueDetailActivity{

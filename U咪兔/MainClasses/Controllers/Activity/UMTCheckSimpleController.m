@@ -44,9 +44,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    //    self.navigationController.navigationBar.barTintColor = kCommonGreenColor;
-    //    self.navigationController.navigationBar.backIndicatorImage = [UIImage new];
-    //    self.navigationController.navigationBar.shadowImage = [UIImage new];
     [self.navigationController.navigationBar setValue:@0 forKeyPath:@"backgroundView.alpha"];
     [self initUI];
     [self reloadData];

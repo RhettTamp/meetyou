@@ -15,5 +15,4 @@
 @property (nonatomic,strong)NSString *userSchool;
 @property (nonatomic,strong)NSData *userIdentityPicture;
 
-
 @end

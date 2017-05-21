@@ -16,6 +16,7 @@
 #import <BaiduMapKit/BaiduMapAPI_Base/BMKBaseComponent.h>
 #import "UMTKeychainTool.h"
 #import "UMTBaseRequest.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface AppDelegate ()<BMKGeneralDelegate>
 

@@ -27,6 +27,15 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addItem];
+        self.backgroundColor = [UIColor whiteColor];
+        UIView *lineView = [[UIView alloc]init];
+        lineView.backgroundColor = kLineColor;
+        [self addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.and.right.equalTo(self);
+            make.top.equalTo(self.mas_top);
+            make.height.mas_equalTo(0.5);
+        }];
     }
     return self;
 }

@@ -20,7 +20,7 @@
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *datalist;
 @property (nonatomic,strong) CLLocationManager *localManage;
-@property (nonatomic,strong) NSMutableArray *siteArray;
+@property (nonatomic,strong) NSMutableArray *distanceArray;
 
 @end
 
@@ -41,12 +41,14 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
     _localManage = [[CLLocationManager alloc]init];
     _localManage.delegate = self;
     _localManage.distanceFilter = 100;
-    self.siteArray = [NSMutableArray array];
+    _localManage.desiredAccuracy = kCLLocationAccuracyBest;
+    [_localManage requestWhenInUseAuthorization];
+    self.distanceArray = [NSMutableArray array];
+    [self reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self reloadData];
 }
 
 - (void)reloadData{
@@ -58,12 +60,14 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
             [self.collectionView.mj_header endRefreshing];
             page = 1;
             NSArray *datas = response[@"data"];
+            [self.distanceArray removeAllObjects];
             for (int i = 0; i < datas.count; i++) {
                 UMTDetailActivityCellModel *model = [UMTDetailActivityCellModel yy_modelWithJSON:datas[i]];
                 [self.datalist addObject:model];
-                
+                [self getDistanceWithSite:model.site];
             }
             [self.collectionView reloadData];
+            [_localManage startUpdatingLocation];
         }
     }];
 }
@@ -78,13 +82,14 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
                 for (int i = 0; i < datas.count; i++) {
                     UMTDetailActivityCellModel *model = [UMTDetailActivityCellModel yy_modelWithJSON:datas[i]];
                     [self.datalist addObject:model];
+                    [self getDistanceWithSite:model.site];
                     [self.collectionView reloadData];
                 }
             }else{
                 page--;
                 [self.collectionView.mj_footer endRefreshingWithNoMoreData];
             }
-
+            
         }
     }];
 }
@@ -137,8 +142,8 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
     cell.site = model.site;
     cell.tags = model.tags;
     cell.headUrl = model.creator.headImgUrl;
-    if (self.siteArray.count > indexPath.row) {
-        cell.distanceString = self.siteArray[indexPath.row];
+    if (self.distanceArray.count > indexPath.row) {
+        cell.distanceString = self.distanceArray[indexPath.row];
     }
     [cell reloadData];
     return cell;
@@ -160,39 +165,38 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
     nowLng = newLocation.coordinate.longitude;
     //将纬度现实到label上
     nowLat = newLocation.coordinate.latitude;
-    //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
     [manager stopUpdatingLocation];
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    for (int i = 0; i < self.datalist.count; i++) {
-        UMTDetailActivityCellModel *model = self.datalist[i];[geocoder geocodeAddressString:model.site completionHandler:^(NSArray* placemarks, NSError* error){
-            if (!error) {
-                
-                for (CLPlacemark* aPlacemark in placemarks)
-                {
-                    double lng = aPlacemark.location.coordinate.longitude;
-                    double lat = aPlacemark.location.coordinate.latitude;
-                    double distance = [self distanceBetweenOrderBy:nowLat :lat :nowLng :lng];
-                    if (distance > 5000) {
-                        [self.siteArray addObject:@">5km"];
-                    }else if (distance > 1000){
-                        [self.siteArray addObject:[NSString stringWithFormat:@"%1.2fkm",distance]];
-                    }else{
-                        [self.siteArray addObject:[NSString stringWithFormat:@"%2.0fm",distance]];
-                    }
-                }
-                [self.collectionView reloadData];
-            }
-            else{
-                NSLog(@"error--%@",[error localizedDescription]);
-            }
-        }];
-    }
-    
 }
 
--(double)distanceBetweenOrderBy:(double) lat1 :(double) lat2 :(double) lng1 :(double) lng2{
-    CLLocation *curLocation = [[CLLocation alloc] initWithLatitude:lat1 longitude:lng1];
-    CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:lat2 longitude:lng2];
+- (void)getDistanceWithSite:(NSString *)site{
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:site completionHandler:^(NSArray* placemarks, NSError* error){
+        if (!error) {
+            for (CLPlacemark* aPlacemark in placemarks)
+            {
+                NSLog(@"%@",site);
+                double lng = aPlacemark.location.coordinate.longitude;
+                double lat = aPlacemark.location.coordinate.latitude;
+                double distance = [self distanceBetweenOrderBy:lat :lng];                    if (distance > 5000) {
+                    [self.distanceArray addObject:@">5km"];
+                }else if (distance > 1000){
+                    [self.distanceArray addObject:[NSString stringWithFormat:@"%1.2fkm",distance]];
+                }else{
+                    [self.distanceArray addObject:[NSString stringWithFormat:@"%2.0fm",distance]];
+                }
+            }
+            [self.collectionView reloadData];
+        }
+        else{
+            NSLog(@"error--%@",[error localizedDescription]);
+        }
+    }];
+}
+
+
+-(double)distanceBetweenOrderBy:(double)lat :(double)lng{
+    CLLocation *curLocation = [[CLLocation alloc] initWithLatitude:nowLat longitude:nowLng];
+    CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
     double  distance  = [curLocation distanceFromLocation:otherLocation];
     return  distance;
 }

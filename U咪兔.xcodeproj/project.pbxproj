@@ -13,7 +13,6 @@
 		F02669A81E8E55C80016F05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F02669A41E8E55C80016F05B /* Main.storyboard */; };
 		F02669A91E8E55C80016F05B /* UMTRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F02669A61E8E55C80016F05B /* UMTRootViewController.m */; };
 		F02669AD1E8E565C0016F05B /* UMTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F02669AB1E8E565C0016F05B /* UMTLoginViewController.m */; };
-		F02669AE1E8E565C0016F05B /* UMTLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02669AC1E8E565C0016F05B /* UMTLoginViewController.xib */; };
 		F02669B21E8E56C90016F05B /* UMTRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F02669B01E8E56C90016F05B /* UMTRegisterViewController.m */; };
 		F02669B31E8E56C90016F05B /* UMTRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02669B11E8E56C90016F05B /* UMTRegisterViewController.xib */; };
 		F02669B71E8E65820016F05B /* UMTFindPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F02669B51E8E65820016F05B /* UMTFindPasswordController.m */; };
@@ -65,6 +64,8 @@
 		F0A20D4B1ECAE0A700E81FBF /* UMTComitSuccessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A20D491ECAE0A700E81FBF /* UMTComitSuccessController.xib */; };
 		F0A20D511ECB354500E81FBF /* UMTSearchMapRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A20D501ECB354500E81FBF /* UMTSearchMapRequest.m */; };
 		F0A20D541ECC30C700E81FBF /* UMTUpdateVerifyImg.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A20D531ECC30C700E81FBF /* UMTUpdateVerifyImg.m */; };
+		F0A20D591ECEC63900E81FBF /* UMTMeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A20D581ECEC63900E81FBF /* UMTMeHeadView.m */; };
+		F0A20D5C1ECECE7F00E81FBF /* UMTMeItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A20D5B1ECECE7F00E81FBF /* UMTMeItemView.m */; };
 		F0A56DFA1EA7462B00B32556 /* UMTTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A56DF91EA7462B00B32556 /* UMTTabBar.m */; };
 		F0FB269C1E8E9E8C000D587E /* UMTUserMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB269B1E8E9E8C000D587E /* UMTUserMgr.m */; };
 		F0FB26A91E8EA586000D587E /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F0FB26A61E8EA586000D587E /* UIView+Extension.m */; };
@@ -113,7 +114,6 @@
 		F02669A61E8E55C80016F05B /* UMTRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTRootViewController.m; sourceTree = "<group>"; };
 		F02669AA1E8E565C0016F05B /* UMTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTLoginViewController.h; sourceTree = "<group>"; };
 		F02669AB1E8E565C0016F05B /* UMTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTLoginViewController.m; sourceTree = "<group>"; };
-		F02669AC1E8E565C0016F05B /* UMTLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMTLoginViewController.xib; sourceTree = "<group>"; };
 		F02669AF1E8E56C90016F05B /* UMTRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTRegisterViewController.h; sourceTree = "<group>"; };
 		F02669B01E8E56C90016F05B /* UMTRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTRegisterViewController.m; sourceTree = "<group>"; };
 		F02669B11E8E56C90016F05B /* UMTRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMTRegisterViewController.xib; sourceTree = "<group>"; };
@@ -211,6 +211,10 @@
 		F0A20D501ECB354500E81FBF /* UMTSearchMapRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTSearchMapRequest.m; sourceTree = "<group>"; };
 		F0A20D521ECC30C700E81FBF /* UMTUpdateVerifyImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTUpdateVerifyImg.h; sourceTree = "<group>"; };
 		F0A20D531ECC30C700E81FBF /* UMTUpdateVerifyImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTUpdateVerifyImg.m; sourceTree = "<group>"; };
+		F0A20D571ECEC63900E81FBF /* UMTMeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTMeHeadView.h; sourceTree = "<group>"; };
+		F0A20D581ECEC63900E81FBF /* UMTMeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTMeHeadView.m; sourceTree = "<group>"; };
+		F0A20D5A1ECECE7F00E81FBF /* UMTMeItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTMeItemView.h; sourceTree = "<group>"; };
+		F0A20D5B1ECECE7F00E81FBF /* UMTMeItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTMeItemView.m; sourceTree = "<group>"; };
 		F0A56DF81EA7462B00B32556 /* UMTTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTTabBar.h; sourceTree = "<group>"; };
 		F0A56DF91EA7462B00B32556 /* UMTTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTTabBar.m; sourceTree = "<group>"; };
 		F0FB26961E8E9B12000D587E /* UMT-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UMT-Prefix.pch"; path = "U咪兔/Support/UMT-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -435,7 +439,6 @@
 			children = (
 				F02669AA1E8E565C0016F05B /* UMTLoginViewController.h */,
 				F02669AB1E8E565C0016F05B /* UMTLoginViewController.m */,
-				F02669AC1E8E565C0016F05B /* UMTLoginViewController.xib */,
 				F02669B41E8E65820016F05B /* UMTFindPasswordController.h */,
 				F02669B51E8E65820016F05B /* UMTFindPasswordController.m */,
 				F02669B61E8E65820016F05B /* UMTFindPasswordController.xib */,
@@ -546,7 +549,7 @@
 				F04ECC551E8E1EBF0024A74B /* Activity */,
 				F0FB27101E9A5968000D587E /* Find */,
 				F04ECC561E8E1EBF0024A74B /* Message */,
-				F04ECC571E8E1EBF0024A74B /* Me */,
+				F0A20D561ECEC62900E81FBF /* Me */,
 				F0FB26E91E960724000D587E /* UMTSeparatorLine.h */,
 				F0FB26EA1E960724000D587E /* UMTSeparatorLine.m */,
 				F0FB27071E98FF0F000D587E /* UMTAlertView.h */,
@@ -586,14 +589,6 @@
 			children = (
 			);
 			path = Message;
-			sourceTree = "<group>";
-		};
-		F04ECC571E8E1EBF0024A74B /* Me */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Me;
-			path = Setting;
 			sourceTree = "<group>";
 		};
 		F04ECC581E8E1EBF0024A74B /* Request */ = {
@@ -669,6 +664,17 @@
 				F0585E611EBF6DC5004B6488 /* UMTIssueSimpleActivityController.m */,
 			);
 			path = AddActivity;
+			sourceTree = "<group>";
+		};
+		F0A20D561ECEC62900E81FBF /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				F0A20D571ECEC63900E81FBF /* UMTMeHeadView.h */,
+				F0A20D581ECEC63900E81FBF /* UMTMeHeadView.m */,
+				F0A20D5A1ECECE7F00E81FBF /* UMTMeItemView.h */,
+				F0A20D5B1ECECE7F00E81FBF /* UMTMeItemView.m */,
+			);
+			path = Me;
 			sourceTree = "<group>";
 		};
 		F0FB26661E8E77D1000D587E /* Support */ = {
@@ -919,7 +925,6 @@
 				F0FB26DB1E949AAC000D587E /* UMTContactCell.xib in Resources */,
 				F04ECC641E8E1EBF0024A74B /* Info.plist in Resources */,
 				F0A20D4B1ECAE0A700E81FBF /* UMTComitSuccessController.xib in Resources */,
-				F02669AE1E8E565C0016F05B /* UMTLoginViewController.xib in Resources */,
 				F02669B31E8E56C90016F05B /* UMTRegisterViewController.xib in Resources */,
 				F02669A81E8E55C80016F05B /* Main.storyboard in Resources */,
 			);
@@ -1008,6 +1013,7 @@
 				F0A20D371EC4693D00E81FBF /* UMTIssurActivityRequest.m in Sources */,
 				F0585E491EBDCAC9004B6488 /* UMTAddActivityNavBar.m in Sources */,
 				F0585E381EBC5154004B6488 /* UMTTagView.m in Sources */,
+				F0A20D5C1ECECE7F00E81FBF /* UMTMeItemView.m in Sources */,
 				F0FB26DA1E949AAC000D587E /* UMTContactCell.m in Sources */,
 				F0A20D3A1EC49B9500E81FBF /* UMTSearchTagRequest.m in Sources */,
 				F0FB26F91E97C926000D587E /* UMTResetPasswordController.m in Sources */,
@@ -1020,6 +1026,7 @@
 				F0A56DFA1EA7462B00B32556 /* UMTTabBar.m in Sources */,
 				F0FB26C11E9214CF000D587E /* UMTInfoItemView.m in Sources */,
 				F0FB26A91E8EA586000D587E /* UIView+Extension.m in Sources */,
+				F0A20D591ECEC63900E81FBF /* UMTMeHeadView.m in Sources */,
 				F0FB26AA1E8EA586000D587E /* UMTProgressHUD.m in Sources */,
 				F0FB27181E9A5AC0000D587E /* UMTRecommendController.m in Sources */,
 				F0585E4F1EBE0810004B6488 /* UMTAddActivityTimeView.m in Sources */,

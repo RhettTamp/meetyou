@@ -37,7 +37,12 @@
     [super viewDidLoad];
     isShowIssueButton = NO;
     [self configSubControllers];
-    [self.tabBar addSubview:self.myTabBar];
+    [self.tabBar removeFromSuperview];
+    [self.view addSubview:self.myTabBar];
+//    for (UITabBarItem *item in self.tabBar.items) {
+//        item.title = @"";
+//        item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+//    }
     [self initIssueView];
 }
 
@@ -236,7 +241,7 @@
 
 - (UMTTabBar *)myTabBar{
     if (!_myTabBar) {
-        _myTabBar = [[UMTTabBar alloc]initWithFrame:CGRectMake(0, 0, UMTScreenWidth, 49)];
+        _myTabBar = [[UMTTabBar alloc]initWithFrame:CGRectMake(0, UMTScreenHeight - 49, UMTScreenWidth, 49)];
         _myTabBar.delegate = self;
     }
     return _myTabBar;

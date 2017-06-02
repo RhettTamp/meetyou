@@ -14,22 +14,38 @@
 #import "UMTNavigationController.h"
 #import "UMTRefreshToken.h"
 #import <BaiduMapKit/BaiduMapAPI_Base/BMKBaseComponent.h>
+#import <BaiduMapAPI_Base/BMKMapManager.h>
 #import "UMTKeychainTool.h"
 #import "UMTBaseRequest.h"
 #import <CoreLocation/CoreLocation.h>
+#import "UMTRefreshLocationRequest.h"
+//#import <Hyphenate_CN/EMSDK.h>
 
-@interface AppDelegate ()<BMKGeneralDelegate>
+@interface AppDelegate ()<BMKGeneralDelegate,CLLocationManagerDelegate>
+
+@property (nonatomic,strong) CLLocationManager *localManage;
 
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+//    EMOptions *options = [EMOptions optionsWithAppkey:@"1163170528178856#meetyou"];
+//    options.apnsCertName = @"meetyou";
+//    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    
+    
+    _localManage = [[CLLocationManager alloc]init];
+    _localManage.delegate = self;
+    _localManage.distanceFilter = 100;
+    _localManage.desiredAccuracy = kCLLocationAccuracyBest;
+    [_localManage requestWhenInUseAuthorization];
+    [_localManage startUpdatingLocation];
     
     BMKMapManager *mapManager = [[BMKMapManager alloc]init];
     BOOL set = [mapManager start:@"foiZgrIuq4XGlCWUlf6HGlHj3kprgX17" generalDelegate:self];
@@ -55,8 +71,24 @@
         UMTNavigationController *nav = [[UMTNavigationController alloc]initWithRootViewController:loginVC];
         self.window.rootViewController = nav;
     }
-//    [Bmob registerWithAppKey:@"10342bad97d4b80691b2cdb168cb3ea6"];
+    [Bmob registerWithAppKey:@"10342bad97d4b80691b2cdb168cb3ea6"];
     return YES;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    double lng = newLocation.coordinate.longitude;
+    //将纬度现实到label上
+    double lat = newLocation.coordinate.latitude;
+    [manager stopUpdatingLocation];
+    [UMTRefreshLocationRequest postLovationWithLng:[NSString stringWithFormat:@"%f",lng] lat:[NSString stringWithFormat:@"%f",lat] CompletionBlock:^(NSError *erro, id response) {
+        if (erro) {
+            NSLog(@"%@",erro);
+        }else{
+            _localManage = nil;
+            _localManage.delegate = nil;
+        }
+    }];
 }
 
 

@@ -470,7 +470,7 @@
 - (void) timeCommitButtonCliked{
     [self hidePickerView];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    formatter.dateFormat = @"yyyy/MM/dd,HH:ss";
+    formatter.dateFormat = @"yyyy/MM/dd,HH:mm";
     NSDate *date = self.datePicker.date;
     NSString *dateStr = [formatter stringFromDate:date];
     [self.currentChoiceTimeButton setTitle:dateStr forState:UIControlStateNormal];

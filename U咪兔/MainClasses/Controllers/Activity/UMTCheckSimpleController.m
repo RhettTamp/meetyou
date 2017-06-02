@@ -265,8 +265,6 @@
     }];
     
     UMTTagView *tagView = [[UMTTagView alloc]init];
-    tagView.tagStr = @"运动";
-    tagView.backgroundColor = kCommonGreenColor;
     [self.scrollView addSubview:tagView];
     [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(8);
@@ -371,13 +369,13 @@
     if (interval > 0) {
         NSString *timeStr = [UMTTimeHelper timeFromTimeInterval:interval];
         self.topView.time = [NSString stringWithFormat:@"%@ 以内",timeStr];
-        self.detailView.timeString = @"00小时00分钟00秒";
-    }else{
-        self.topView.time = @"00:00:00 以内";
         NSString *timeString = [[UMTTimeHelper timeFromTimeInterval:interval] stringByReplacingCharactersInRange:NSMakeRange(2, 1) withString:@"小时"];
         timeString = [timeString stringByReplacingCharactersInRange:NSMakeRange(6, 1) withString:@"分钟"];
         timeString = [timeString stringByAppendingString:@"秒"];
-         self.detailView.timeString = timeString;
+        self.detailView.timeString = timeString;
+    }else{
+        self.topView.time = @"00:00:00 以内";
+        self.detailView.timeString = @"00小时00分钟00秒";
     }
     self.siteView.site = model.site;
     self.contentLabel.text = model.content;
@@ -386,7 +384,7 @@
     self.detailView.limitPerson = model.peopleLimit;
     self.detailView.joinedPerson = model.joinedPeople;
     self.detailView.state = model.status;
-   
+    self.tagView.tagStr = model.tags[0];
 }
 
 - (void)issueActivity{

@@ -437,7 +437,9 @@
         }else{
             if ([response[@"status_code"] isEqualToString:@"2000"]) {
                 [[UMTProgressHUD sharedHUD] showWithText:@"参加成功" inView:self.view hideAfterDelay:0.5];
-                [self.navigationController popViewControllerAnimated:YES];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
             }else{
                 [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",response[@"info"]] inView:self.view hideAfterDelay:0.5];
             }

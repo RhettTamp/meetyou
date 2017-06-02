@@ -382,12 +382,13 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    if (self.scrollView.contentOffset.y>0) {
-        NSDictionary *userInfo = notification.userInfo;
-        CGRect keyboardFrameAfterShow = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        CGFloat keyboardHeight = keyboardFrameAfterShow.size.height;
-        self.scrollView.contentOffset = CGPointMake(0, self.scrollView.contentOffset.y-keyboardHeight);
-    }
+//    if (self.scrollView.contentOffset.y>0) {
+//        NSDictionary *userInfo = notification.userInfo;
+//        CGRect keyboardFrameAfterShow = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//        CGFloat keyboardHeight = keyboardFrameAfterShow.size.height;
+//        self.scrollView.contentOffset = CGPointMake(0, self.scrollView.contentOffset.y-keyboardHeight);
+//    }
+    self.scrollView.contentOffset = CGPointMake(0, 0);
 }
 
 - (void)backClicked{

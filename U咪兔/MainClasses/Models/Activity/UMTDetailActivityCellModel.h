@@ -29,5 +29,6 @@
 @property (nonatomic,assign) double peopleCount; //人数所占百分比，保留两位百分数
 //@property (nonatomic,assign) CGFloat *timeCount;  //时间所占百分比
 @property (nonatomic,strong) NSArray *joinedPersons;
+@property (nonatomic,strong) NSString *distance;
 
 @end

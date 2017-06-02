@@ -43,6 +43,8 @@
 
 - (void)initSubView{
     UIImageView *img = [[UIImageView alloc]init];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headImageTaped)];
+    [img addGestureRecognizer:tap];
     img.layer.cornerRadius = 23;
     img.image = [UIImage imageNamed:@"m1"];
     [self addSubview:img];
@@ -289,7 +291,7 @@
         if ([now timeIntervalSinceDate:applyStartTime]>[applyEndTime timeIntervalSinceDate:applyStartTime]) {
             timePercent = 1;
         }else{
-            timePercent = [now timeIntervalSinceDate:applyStartTime]/[applyEndTime timeIntervalSinceDate:applyStartTime];
+            timePercent = (int)([now timeIntervalSinceDate:applyStartTime]/[applyEndTime timeIntervalSinceDate:applyStartTime]*100)/100.0;
         }
     }else{
         timePercent = 0;
@@ -298,7 +300,8 @@
     
     self.timeCircle.progress = timePercent;
     self.timeCountLabel.text = [NSString stringWithFormat:@"%2.0f",timePercent*100];
-    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://xbbbbbb.cn/MeetU/%@",self.headStr]] placeholderImage:[UIImage imageNamed:@"m1"]];
+//    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://xbbbbbb.cn/MeetU/%@",self.headStr]] placeholderImage:[UIImage imageNamed:@"m1"]];
+    self.headImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"m%d",arc4random()%8]];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     dateFormat.dateFormat = @"yyyy年MM月dd日";
     NSString *starStr = [dateFormat stringFromDate:startDate];
@@ -395,5 +398,8 @@
     }
 }
 
+- (void)headImageTaped{
+    
+}
 
 @end

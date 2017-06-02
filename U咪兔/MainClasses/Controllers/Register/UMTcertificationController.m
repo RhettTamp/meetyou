@@ -237,7 +237,6 @@
         }
         [self presentViewController:self.imgClickedPicker animated:YES completion:nil];
     }
-    
 }
 
 - (void)imageTaped:(UIImageView *)imageView index:(NSInteger)index{

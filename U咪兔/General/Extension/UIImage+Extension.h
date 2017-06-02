@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (Extension)
+
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
+
++ (UIImage *) OriginImage:(UIImage *)image scaleToSize:(CGSize)size;
+
++ (UIImage *)circleImageWithOldImage:(UIImage *)oldImage borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
+
 @end

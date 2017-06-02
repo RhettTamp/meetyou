@@ -63,7 +63,6 @@
     self.personCircle = cir;
     
     UILabel *timeLabel = [[UILabel alloc]init];
-    timeLabel.text = @"00:09:09";
     timeLabel.font = [UIFont boldSystemFontOfSize:15];
     [self addSubview:timeLabel];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,7 +75,6 @@
     UILabel *joinLabel = [[UILabel alloc]init];
     joinLabel.textColor = [UIColor orangeColor];
     joinLabel.font = [UIFont boldSystemFontOfSize:24];
-    joinLabel.text = @"75";
     [self addSubview:joinLabel];
     [joinLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(timeLabel.mas_left);
@@ -105,7 +103,6 @@
     
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    titleLabel.text = @"拼车回重邮";
     [self addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_offset(10);
@@ -123,9 +120,7 @@
     }];
     
     UIImageView *headImg = [[UIImageView alloc]init];
-    NSString *headImgStr = [NSString stringWithFormat:@"m%d",arc4random()%10];
-    headImg.image = [UIImage imageNamed:headImgStr];
-//    headImg.layer.cornerRadius = 9;
+    headImg.layer.cornerRadius = 9;
     [self addSubview:headImg];
     [headImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
@@ -180,7 +175,6 @@
     
     UILabel *contentLabel = [[UILabel alloc]init];
     contentLabel.font = kFont(15);
-    contentLabel.text = @"一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊一起玩啊";
     contentLabel.numberOfLines = 0;
     [self addSubview:contentLabel];
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -193,13 +187,13 @@
     
     UMTSiteView *siteView = [[UMTSiteView alloc]init];
     siteView.backgroundColor = kLineColor;
-    siteView.site = @"重庆邮电大学";
     [self addSubview:siteView];
     [siteView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(headImg);
         make.top.equalTo(contentLabel.mas_bottom).offset(8);
         make.height.mas_equalTo(22);
-//        make.width.mas_equalTo(120);
+//        make.right.lessThanOrEqualTo(self.mas_left).offset(-10);
+        make.width.mas_lessThanOrEqualTo(120);
     }];
     self.siteView = siteView;
     
@@ -216,7 +210,6 @@
     
     UILabel *distanceLabel = [[UILabel alloc] init];
     distanceLabel.textColor = kCommonGreenColor;
-    distanceLabel.text = @"<100m";
     distanceLabel.font = kFont(11);
     [self addSubview:distanceLabel];
     [distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -227,14 +220,11 @@
     self.distanceLable = distanceLabel;
     
     UMTTagView *tagView = [[UMTTagView alloc]init];
-    tagView.backgroundColor = kCommonGreenColor;
-//    tagView.tagStr = @"旅游";
     [self addSubview:tagView];
     [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(headImg.mas_left);
         make.top.equalTo(hintLabel.mas_bottom).offset(10);
         make.height.mas_equalTo(22);
-//        make.width.mas_equalTo(100);
     }];
     self.tagView = tagView;
 }
@@ -270,6 +260,7 @@
     [attributedString addAttributes:dic range:NSMakeRange(0, [self.content length])];
     self.contentLabel.attributedText = attributedString;
     self.personCircle.progress = self.persenCount;
+//    self.personCircle
     self.joinedProgressLabel.text = [NSString stringWithFormat:@"%2.0f",self.persenCount*100];
  
     self.siteView.site = self.site;
@@ -278,6 +269,7 @@
     }
     NSString *url = [NSString stringWithFormat:@"https://xbbbbbb.cn/MeetU/%@",self.headUrl];
     [self.sponsorHead sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"m1"]];
+    self.sponsorHead.image = [UIImage imageNamed:[NSString stringWithFormat:@"m%d",arc4random()%8]];
     NSInteger count = self.joinedArray.count;
     self.joinedImgs = [NSMutableArray array];
     if (count > 4) {

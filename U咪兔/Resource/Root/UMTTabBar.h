@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger,UMTTabItem){
 
 @end
 
-@interface UMTTabBar : UIView
+@interface UMTTabBar : UITabBar
 
 @property (nonatomic,weak) id<UMTTabBarDelegate>delegate;
 

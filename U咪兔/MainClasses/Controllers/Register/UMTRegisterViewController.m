@@ -46,13 +46,13 @@ NSInteger timeOut;
         [[UMTProgressHUD sharedHUD] showWithText:@"请输入正确的手机号码" inView:self.view hideAfterDelay:1];
         return;
     }
-//    [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:phoneNumber andTemplate:@"U咪兔账号注册	" resultBlock:^(int number, NSError *error) {
-//        if (error) {
-//            NSLog(@"%@",error);
-//        }else{
-//            
-//        }
-//    }];
+    [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:phoneNumber andTemplate:@"U咪兔账号注册	" resultBlock:^(int number, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        }else{
+            
+        }
+    }];
     self.getSecurityButton.enabled = NO;
     self.getSecurityButton.backgroundColor = kGrayFontColor;
     [self.getSecurityButton setTitle:@"60秒" forState:UIControlStateDisabled];
@@ -75,8 +75,8 @@ NSInteger timeOut;
     }
     
     //验证
-//    [BmobSMS verifySMSCodeInBackgroundWithPhoneNumber:mobilePhoneNumber andSMSCode:smsCode resultBlock:^(BOOL isSuccessful, NSError *error) {
-//        if (isSuccessful) {
+    [BmobSMS verifySMSCodeInBackgroundWithPhoneNumber:mobilePhoneNumber andSMSCode:smsCode resultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
             [[UMTProgressHUD sharedHUD] showWithText:@"验证成功" inView:self.view hideAfterDelay:0.5];
             UMTRegisterHelper *helper = [UMTRegisterHelper sharedHelper];
             helper.phone = mobilePhoneNumber;
@@ -85,11 +85,11 @@ NSInteger timeOut;
                 [self.navigationController pushViewController:vc animated:YES];
             });
             
-//        } else {
-//            NSLog(@"%@",error);
-//            [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",error] inView:self.view hideAfterDelay:1];
-//        }
-//    }];
+        } else {
+            NSLog(@"%@",error);
+            [[UMTProgressHUD sharedHUD] showWithText:[NSString stringWithFormat:@"%@",error] inView:self.view hideAfterDelay:1];
+        }
+    }];
 }
 
 - (void)addCurDowntimerWithSecond:(NSInteger)second{

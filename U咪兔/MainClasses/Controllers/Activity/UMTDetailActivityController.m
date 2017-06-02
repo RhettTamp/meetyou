@@ -32,14 +32,14 @@ static NSString *const cellIdentifier = @"UMTDetailActivityCell";
     [super viewDidLoad];
     self.datalist = [NSMutableArray array];
     [self initTableView];
-    [self refreshData];
+//    [self refreshData];
     page = 1;
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    [self refreshData];
-//}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self refreshData];
+}
 
 //- (void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];

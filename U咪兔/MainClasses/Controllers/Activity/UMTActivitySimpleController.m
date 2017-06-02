@@ -13,14 +13,12 @@
 #import "UMTDetailActivityCellModel.h"
 #import "UMTUserInfoModel.h"
 #import <MJRefresh.h>
-#import <CoreLocation/CoreLocation.h>
 
-@interface UMTActivitySimpleController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,CLLocationManagerDelegate>
+@interface UMTActivitySimpleController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *datalist;
-@property (nonatomic,strong) CLLocationManager *localManage;
-@property (nonatomic,strong) NSMutableArray *distanceArray;
+@property (nonatomic,strong) NSMutableDictionary *cellDic;
 
 @end
 
@@ -28,7 +26,6 @@
 {
     NSInteger page;
     CGFloat kCellWidth;
-    double nowLat,nowLng;
 }
 static NSString *const cellId = @"UMTSimpleActivityCell";
 
@@ -38,17 +35,13 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
     kCellWidth = UMTScreenWidth<375?(UMTScreenWidth-15)/2: (UMTScreenWidth-29)/2;
     [self initCollectionView];
     self.datalist = [NSMutableArray array];
-    _localManage = [[CLLocationManager alloc]init];
-    _localManage.delegate = self;
-    _localManage.distanceFilter = 100;
-    _localManage.desiredAccuracy = kCLLocationAccuracyBest;
-    [_localManage requestWhenInUseAuthorization];
-    self.distanceArray = [NSMutableArray array];
-    [self reloadData];
+    _cellDic = [NSMutableDictionary dictionary];
+//    [self reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self reloadData];
 }
 
 - (void)reloadData{
@@ -60,14 +53,11 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
             [self.collectionView.mj_header endRefreshing];
             page = 1;
             NSArray *datas = response[@"data"];
-            [self.distanceArray removeAllObjects];
             for (int i = 0; i < datas.count; i++) {
                 UMTDetailActivityCellModel *model = [UMTDetailActivityCellModel yy_modelWithJSON:datas[i]];
                 [self.datalist addObject:model];
-                [self getDistanceWithSite:model.site];
             }
             [self.collectionView reloadData];
-            [_localManage startUpdatingLocation];
         }
     }];
 }
@@ -82,7 +72,6 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
                 for (int i = 0; i < datas.count; i++) {
                     UMTDetailActivityCellModel *model = [UMTDetailActivityCellModel yy_modelWithJSON:datas[i]];
                     [self.datalist addObject:model];
-                    [self getDistanceWithSite:model.site];
                     [self.collectionView reloadData];
                 }
             }else{
@@ -133,7 +122,17 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UMTSimpleActivityCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+//    UMTSimpleActivityCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    
+    NSString *identifier = [_cellDic objectForKey:[NSString stringWithFormat:@"%@",indexPath]];
+    if (identifier == nil) {
+        identifier = [NSString stringWithFormat:@"%@%@",cellId,indexPath];
+        [_cellDic setValue:identifier forKey:[NSString stringWithFormat:@"%@",indexPath]];
+        [collectionView registerClass:[UMTSimpleActivityCell class] forCellWithReuseIdentifier:identifier];
+    }
+    
+    UMTSimpleActivityCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
     UMTDetailActivityCellModel *model = self.datalist[indexPath.row];
     cell.title = model.title;
     cell.content = model.content;
@@ -142,9 +141,7 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
     cell.site = model.site;
     cell.tags = model.tags;
     cell.headUrl = model.creator.headImgUrl;
-    if (self.distanceArray.count > indexPath.row) {
-        cell.distanceString = self.distanceArray[indexPath.row];
-    }
+    cell.distanceString = model.distance;
     [cell reloadData];
     return cell;
 }
@@ -160,45 +157,7 @@ static NSString *const cellId = @"UMTSimpleActivityCell";
     [self.navigationController pushViewController:checkSimpleVC animated:YES];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    nowLng = newLocation.coordinate.longitude;
-    //将纬度现实到label上
-    nowLat = newLocation.coordinate.latitude;
-    [manager stopUpdatingLocation];
-}
-
-- (void)getDistanceWithSite:(NSString *)site{
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder geocodeAddressString:site completionHandler:^(NSArray* placemarks, NSError* error){
-        if (!error) {
-            for (CLPlacemark* aPlacemark in placemarks)
-            {
-                NSLog(@"%@",site);
-                double lng = aPlacemark.location.coordinate.longitude;
-                double lat = aPlacemark.location.coordinate.latitude;
-                double distance = [self distanceBetweenOrderBy:lat :lng];                    if (distance > 5000) {
-                    [self.distanceArray addObject:@">5km"];
-                }else if (distance > 1000){
-                    [self.distanceArray addObject:[NSString stringWithFormat:@"%1.2fkm",distance]];
-                }else{
-                    [self.distanceArray addObject:[NSString stringWithFormat:@"%2.0fm",distance]];
-                }
-            }
-            [self.collectionView reloadData];
-        }
-        else{
-            NSLog(@"error--%@",[error localizedDescription]);
-        }
-    }];
-}
 
 
--(double)distanceBetweenOrderBy:(double)lat :(double)lng{
-    CLLocation *curLocation = [[CLLocation alloc] initWithLatitude:nowLat longitude:nowLng];
-    CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
-    double  distance  = [curLocation distanceFromLocation:otherLocation];
-    return  distance;
-}
 
 @end
